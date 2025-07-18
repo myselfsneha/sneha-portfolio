@@ -1,0 +1,62 @@
+/* 🌸 Pastel Portfolio Styling */
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #fff7f6;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+header {
+  background: #ffe0e9;
+  text-align: center;
+  padding: 30px 15px;
+  color: #333;
+}
+
+h1, h2 {
+  margin-bottom: 10px;
+}
+
+section {
+  padding: 40px 20px;
+  max-width: 800px;
+  margin: auto;
+  text-align: center;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  margin: 10px 0;
+}
+
+.btn {
+  display: inline-block;
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: #ffb3c6;
+  color: white;
+  text-decoration: none;
+  border-radius: 25px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #ff8fab;
+}
+
+.profile-pic {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #ffb3c6;
+  margin-bottom: 15px;
+}
