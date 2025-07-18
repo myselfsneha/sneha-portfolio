@@ -151,3 +151,86 @@ button:hover {
 .btn:hover {
   background: #ff88aa;
 }
+
+.featured-projects {
+  padding: 60px 20px;
+  background: #fffafc;
+  text-align: center;
+}
+
+.featured-projects h2 {
+  font-size: 32px;
+  margin-bottom: 30px;
+  color: #ff7eb3;
+}
+
+.project-cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid #eaeaea;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  width: 300px;
+  transition: transform 0.3s ease;
+  padding: 20px;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.card h3 {
+  margin: 15px 0 10px;
+  color: #222;
+}
+
+.card p {
+  font-size: 14px;
+  color: #666;
+}
+
+.card a {
+  display: inline-block;
+  margin-top: 12px;
+  color: #fff;
+  background: #ff9a8b;
+  padding: 8px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.card a:hover {
+  background: #f66d9b;
+}
+
+.resume-download {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.resume-download button {
+  background-color: #ff9a8b;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.resume-download button:hover {
+  background-color: #f66d9b;
+}
