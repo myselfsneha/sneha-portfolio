@@ -6,9 +6,6 @@
   <title>Sneha Singh | Portfolio</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
-  <!-- AOS Library CSS -->
-<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
 </head>
 <body>
 
@@ -18,8 +15,7 @@
   </header>
 
   <section class="intro" data-aos="zoom-in">
-    <section id="intro" data-aos="fade-up"></section>
-   <img src="assets/sneha.jpg" alt="Sneha Singh" class="profile-img" />
+    <img src="assets/sneha.jpg" alt="Sneha Singh" class="profile-img" />
     <p>📍 Indore, India</p>
     <p>Driven by curiosity. Empowered by data.</p>
     <p>💡 Skills: Python, SQL, Excel, Power BI, Data Analytics</p>
@@ -27,112 +23,84 @@
     <a href="Resume_Sneha_Singh.pdf" target="_blank">Download Resume</a>
   </section>
 
-  <section id="projects" class="section">
-    <section id="projects" data-aos="fade-up" data-aos-delay="100"></section>
-  <h2>💼 Projects</h2>
-  <div class="project-grid">
-    <div class="project-card">
-      <h3>🛍 Blinkit Sales Dashboard</h3>
-      <p>Power BI dashboard showing top products, sales, orders, and trends.</p>
-      <a href="https://github.com/myselfsneha/blinkit-sales-dashboard" target="_blank">View Project</a>
+  <section id="projects" class="section" data-aos="fade-up" data-aos-delay="100">
+    <h2>💼 Projects</h2>
+    <div class="project-grid">
+      <div class="project-card">
+        <h3>🛍 Blinkit Sales Dashboard</h3>
+        <p>Power BI dashboard showing top products, sales, orders, and trends.</p>
+        <a href="https://github.com/myselfsneha/blinkit-sales-dashboard" target="_blank">View Project</a>
+      </div>
+      <div class="project-card">
+        <h3>🚦 Road Accident Analysis</h3>
+        <p>Excel dashboard analyzing accidents by state, time slot, and severity.</p>
+        <a href="https://github.com/myselfsneha/road-accident-dashboard" target="_blank">View Project</a>
+      </div>
+      <div class="project-card">
+        <h3>💍 Wedding Crunchers</h3>
+        <p>Python analysis on wedding costs, seasons, and guest sizes using visualizations.</p>
+        <a href="https://github.com/myselfsneha/wedding-crunchers-analysis" target="_blank">View Project</a>
+      </div>
     </div>
-    <div class="project-card">
-      <h3>🚦 Road Accident Analysis</h3>
-      <p>Excel dashboard analyzing accidents by state, time slot, and severity.</p>
-      <a href="https://github.com/myselfsneha/road-accident-dashboard" target="_blank">View Project</a>
+  </section>
+
+  <section class="featured-projects" data-aos="fade-up" data-aos-delay="150">
+    <h2>🌟 Featured Projects</h2>
+    <div class="project-cards">
+
+      <div class="card">
+        <img src="assets/wedding.png" alt="Wedding Crunchers Project" />
+        <h3>Wedding Crunchers Analysis</h3>
+        <p>Analyzed real-world wedding data to find insights in costs, seasons, guest sizes, and trends.</p>
+        <a href="https://github.com/myselfsneha/wedding-crunchers-analysis" class="btn" target="_blank">GitHub</a>
+        <a href="https://myselfsneha.github.io/sneha-portfolio/" class="btn" target="_blank">Live Demo</a>
+      </div>
+
+      <div class="card">
+        <img src="assets/blinkit.png" alt="Blinkit Dashboard" />
+        <h3>Blinkit Dashboard</h3>
+        <p>Created a Power BI dashboard visualizing Blinkit sales and delivery metrics.</p>
+        <a href="https://github.com/myselfsneha/blinkit-sales-dashboard" class="btn" target="_blank">GitHub</a>
+        <a href="https://myselfsneha.github.io/sneha-portfolio/" class="btn" target="_blank">Live Demo</a>
+      </div>
+
+      <div class="card">
+        <img src="assets/accident.png" alt="Road Accident Dashboard" />
+        <h3>Road Accident Dashboard</h3>
+        <p>Built an Excel dashboard showing accident trends, severity, and city data.</p>
+        <a href="https://github.com/myselfsneha/road-accident-dashboard" class="btn" target="_blank">GitHub</a>
+        <a href="https://myselfsneha.github.io/sneha-portfolio/" class="btn" target="_blank">Live Demo</a>
+      </div>
+
     </div>
-    <div class="project-card">
-      <h3>💍 Wedding Crunchers</h3>
-      <p>Python analysis on wedding costs, seasons, and guest sizes using visualizations.</p>
-      <a href="https://github.com/myselfsneha/wedding-crunchers-analysis" target="_blank">View Project</a>
-    </div>
+  </section>
+
+  <section id="contact" class="section" data-aos="fade-up" data-aos-delay="200">
+    <h2>📬 Contact Me</h2>
+    <p>If you'd like to connect, collaborate, or just say hi, feel free to reach out:</p>
+    <ul class="contact-info">
+      <li>📧 Email: <a href="mailto:snehaasingh.2409@gmail.com">snehaasingh.2409@gmail.com</a></li>
+      <li>🔗 LinkedIn: <a href="https://www.linkedin.com/in/singh--sneha" target="_blank">linkedin.com/in/singh--sneha</a></li>
+      <li>💬 Instagram: <a href="https://www.instagram.com/dumpingyard._/" target="_blank">@dumpingyard._</a></li>
+      <li>📅 Schedule: <a href="https://calendly.com/snehaasingh-2409/30min" target="_blank">Book a 30 min chat</a></li>
+    </ul>
+  </section>
+
+  <div class="resume-download">
+    <a href="assets/Resume_Sneha_Singh.pdf" download>
+      <button>📄 Download My Resume</button>
+    </a>
   </div>
-</section>
 
-<section class="featured-projects">
-  <h2>🌟 Featured Projects</h2>
-  <div class="project-cards">
-
-    <div class="card">
-      <img src="assets/wedding.png" alt="Wedding Crunchers Project">
-      <h3>Wedding Crunchers</h3>
-      <p>Analyzed wedding trends by season, cost, and guests using Python and Seaborn.</p>
-      <a href="https://github.com/myselfsneha/wedding-crunchers-analysis" target="_blank">View Project</a>
-    </div>
-
-    <div class="project">
-  <h3>Wedding Crunchers Analysis</h3>
-  <p>Analyzed real-world wedding data to find insights in costs, seasons, guest sizes, and trends.</p>
-  
-  <!-- Add GitHub and Live buttons here -->
-  <a href="https://github.com/myselfsneha/wedding-crunchers-analysis" class="btn" target="_blank">GitHub</a>
-  
-</div>
-    <div class="card">
-      <img src="assets/blinkit.png" alt="Blinkit Sales Dashboard">
-      <h3>Blinkit Dashboard</h3>
-      <p>Created a Power BI dashboard visualizing Blinkit sales and delivery metrics.</p>
-      <a href="https://github.com/myselfsneha/blinkit-dashboard" target="_blank">View Project</a>
-    </div>
-
-    <div class="project">
-  <h3>Blinkit Dashboard</h3>
-  <p>Created a Power BI dashboard visualizing Blinkit sales and delivery metrics.</p>
-  
-  <!-- Add GitHub and Live buttons here -->
-  <a href="https://github.com/myselfsneha/blinkit-dashboard" class="btn" target="_blank">GitHub</a>
- 
-</div>
-    <div class="card">
-      <img src="assets/accident.png" alt="Road Accident Dashboard">
-      <h3>Road Accident Dashboard</h3>
-      <p>Built an Excel dashboard showing accident trends, severity, and city data.</p>
-      <a href="https://github.com/myselfsneha/road-accident-dashboard" target="_blank">View Project</a>
-    </div>
-
-    <div class="project">
-  <h3>Road Accident Dashboard</h3>
-  <p>Built an Excel dashboard showing accident trends, severity, and city data.</p>
-  
-  <!-- Add GitHub and Live buttons here -->
-  <a href="https://github.com/myselfsneha/road-accident-dashboard" class="btn" target="_blank">GitHub</a>
-  
-</div>
+  <div class="contact-form">
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdaGSNr1DJUoEQifqhQXcD7wrMMjbGUXsPqWqEIEKRUB5yykQ/viewform?usp=header" width="100%" height="600" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
   </div>
-</section>
-
-  <section id="contact" class="section">
-    <section id="contact" data-aos="fade-up" data-aos-delay="200"></section>
-  <h2>📬 Contact Me</h2>
-  <p>If you'd like to connect, collaborate, or just say hi, feel free to reach out:</p>
-
-  <ul class="contact-info">
-    <li>📧 Email: <a href="mailto:snehaasingh.2409@gmail.com">snehaasingh.2409@gmail.com</a></li>
-    <li>🔗 LinkedIn: <a href="https://www.linkedin.com/in/singh--sneha" target="_blank">linkedin.com/in/singh--sneha</a></li>
-    <li>💬 Instagram: <a href="https://www.instagram.com/dumpingyard._/" target="_blank">@dumpingyard._</a></li>
-    <li>📅 Schedule: <a href="https://calendly.com/snehaasingh-2409/30min" target="_blank">Book a 30 min chat</a></li>
-  </ul>
-</section>
-
-<div class="resume-download">
-  <a href="assets/Resume_Sneha_Singh.pdf" download>
-    <button>📄 Download My Resume</button>
-  </a>
-</div>
-
-<div class="contact-form">
-  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdaGSNr1DJUoEQifqhQXcD7wrMMjbGUXsPqWqEIEKRUB5yykQ/viewform?usp=header" width="100%" height="600" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-</div>
 
   <script src="script.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-  <script>AOS.init();</script>
-
-  <!-- AOS Library JS -->
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-  AOS.init();
-</script>
+  <script>
+    AOS.init();
+  </script>
 
 </body>
 </html>
