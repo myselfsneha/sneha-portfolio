@@ -1,16 +1,7 @@
-// Minimal interaction script
-console.log("Sneha's portfolio loaded.");
-// Reveal sections on scroll
-const sections = document.querySelectorAll("section");
-
-function revealOnScroll() {
-  sections.forEach(section => {
-    const sectionTop = section.getBoundingClientRect().top;
-    if (sectionTop < window.innerHeight - 100) {
-      section.classList.add("visible");
-    }
-  });
-}
-
-window.addEventListener("scroll", revealOnScroll);
-window.addEventListener("load", revealOnScroll);
+window.addEventListener("DOMContentLoaded", () => {
+  document.body.style.opacity = 0;
+  setTimeout(() => {
+    document.body.style.transition = "opacity 1s ease";
+    document.body.style.opacity = 1;
+  }, 100);
+});
