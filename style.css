@@ -234,3 +234,18 @@ button:hover {
 .resume-download button:hover {
   background-color: #f66d9b;
 }
+
+.btn {
+  display: inline-block;
+  background-color: #7b2cbf;
+  color: white;
+  padding: 8px 16px;
+  margin: 5px 10px 5px 0;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #9d4edd;
+}
