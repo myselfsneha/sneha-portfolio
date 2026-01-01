@@ -191,3 +191,25 @@ body {
   .hero-right { width:100%; }
   .nav-links { display:none; }
 }
+/* Hero entrance animation */
+.hero-left {
+  animation: slideFade 1.2s ease forwards;
+}
+
+@keyframes slideFade {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Gradient glow on name */
+.hero-title .name {
+  background: linear-gradient(90deg, #f06292, #6ec6ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
