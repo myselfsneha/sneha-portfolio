@@ -573,8 +573,3 @@ a:hover {
   box-shadow: 0 0 15px var(--primary);
   transform: translateY(-4px);
 }
-
-.socials a:hover i {
-  transform: scale(1.1);
-  transition: 0.3s;
-}
