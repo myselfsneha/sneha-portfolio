@@ -102,25 +102,3 @@ sections.forEach(section => {
   section.classList.add("hidden");
   observer.observe(section);
 });
-
-const navLinks = document.querySelectorAll(".navbar nav a");
-
-window.addEventListener("scroll", () => {
-  let current = "";
-
-  sections.forEach(section => {
-    const top = section.offsetTop;
-    const height = section.clientHeight;
-
-    if (scrollY >= top - 200) {
-      current = section.getAttribute("id");
-    }
-  });
-
-  navLinks.forEach(link => {
-    link.classList.remove("active");
-    if (link.getAttribute("href").includes(current)) {
-      link.classList.add("active");
-    }
-  });
-});

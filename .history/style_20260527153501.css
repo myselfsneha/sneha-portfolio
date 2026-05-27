@@ -1,0 +1,204 @@
+:root {
+  --bg: #fff7fb;
+  --text: #1e1b4b;
+  --primary: #c084fc;
+  --secondary: #f472b6;
+  --card: #ffffff;
+}
+
+body.dark {
+  --bg: #0f0a1f;
+  --text: #f8fafc;
+  --primary: #d8b4fe;
+  --secondary: #f9a8d4;
+  --card: #1e1333;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  transition: 0.3s ease;
+  scroll-behavior: smooth;
+}
+
+/* NAVBAR */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 60px;
+  background: transparent;
+  transition: 0.3s ease;
+  z-index: 1000;
+}
+
+.navbar.scrolled {
+  background: var(--card);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.navbar .logo {
+  font-weight: 700;
+  font-family: "Poppins", sans-serif;
+}
+
+.navbar nav a {
+  margin: 0 12px;
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* HERO */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 120px 60px;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.glow {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, var(--primary), transparent 70%);
+  filter: blur(100px);
+  top: 50%;
+  right: 10%;
+  transform: translateY(-50%);
+  opacity: 0.4;
+  z-index: 0;
+}
+
+.hero-left {
+  flex: 1;
+  z-index: 1;
+  animation: fadeUp 1s ease forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.hero-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  z-index: 1;
+  animation: fadeUp 1s ease forwards;
+  animation-delay: 0.3s;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.greeting {
+  color: var(--secondary);
+  font-weight: 600;
+}
+
+.hero-left h1 {
+  font-size: 3.5rem;
+  font-family: "Poppins", sans-serif;
+}
+
+.hero-left h2 {
+  margin-top: 10px;
+  font-weight: 500;
+  color: var(--primary);
+}
+
+.typing {
+  margin-top: 10px;
+  color: var(--secondary);
+  font-weight: 500;
+  min-height: 25px;
+}
+
+#typedText {
+  border-right: 2px solid var(--primary);
+  padding-right: 5px;
+}
+
+.desc {
+  margin: 20px 0;
+  max-width: 500px;
+  opacity: 0.8;
+}
+
+/* BUTTONS */
+.buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.primary {
+  background: var(--primary);
+  color: white;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.secondary {
+  background: transparent;
+  border: 2px solid var(--primary);
+  color: var(--text);
+  padding: 12px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* SOCIALS */
+.socials {
+  margin-top: 25px;
+  display: flex;
+  gap: 15px;
+  font-size: 20px;
+}
+
+.socials i {
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.socials i:hover {
+  color: var(--secondary);
+  transform: translateY(-3px);
+}
+
+/* PROFILE */
+.profile-card {
+  width: 300px;
+  height: 300px;
+  background: var(--card);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+}
+
+.profile-card img {
+  width: 100%;
+  border-radius: 20px;
+}
