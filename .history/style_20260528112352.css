@@ -760,15 +760,3 @@ a:hover {
   transform: translate(-50%, -50%);
   z-index: -1;
 }
-
-body {
-  font-family: "Inter", sans-serif;
-  color: white;
-  background: #0f0f14;
-}
-
-.section-title {
-  font-size: 3rem;
-  font-weight: 700;
-  margin-bottom: 50px;
-}
