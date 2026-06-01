@@ -14,7 +14,7 @@
 
 ## 📸 Preview
 <p align="center">
-  <img src="assets/portfolio.png" width="800"/>
+  <img src="portfolio.png" width="800"/>
   <br/>
   <em>Landing page of my portfolio</em>
 </p>
