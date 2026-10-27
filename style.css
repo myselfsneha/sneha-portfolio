@@ -53,7 +53,7 @@ html {
 body {
     min-height: 100vh;
     font-family: var(--font-body);
-    background-color: var(--bg);
+    background: var(--bg);
     color: var(--text);
     line-height: 1.6;
     overflow-x: hidden;
@@ -62,7 +62,7 @@ body {
 
 ::selection {
     background: var(--primary);
-    color: #ffffff;
+    color: #fff;
 }
 
 img {
@@ -197,6 +197,7 @@ section {
     font-size: 1.05rem;
     font-weight: 900;
     letter-spacing: -0.06em;
+    text-decoration: none;
 }
 
 .logo::before {
@@ -219,7 +220,6 @@ section {
 
 .navbar nav a {
     position: relative;
-    margin: 0;
     padding: 9px 11px;
     color: var(--text);
     text-decoration: none;
@@ -236,7 +236,7 @@ section {
 }
 
 .navbar nav a.active {
-    color: #ffffff;
+    color: #fff;
     background: var(--primary);
 }
 
@@ -244,8 +244,15 @@ section {
     display: none;
 }
 
-#themeToggle {
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     flex-shrink: 0;
+}
+
+#themeToggle,
+#menuToggle {
     min-width: 40px;
     min-height: 40px;
     padding: 8px;
@@ -258,9 +265,20 @@ section {
     transition: transform var(--transition), background-color var(--transition);
 }
 
-#themeToggle:hover {
+#themeToggle:hover,
+#menuToggle:hover {
     background: var(--accent);
-    transform: rotate(-8deg) scale(1.06);
+    transform: rotate(-5deg) scale(1.05);
+}
+
+#menuToggle {
+    display: none;
+    font-size: 1.3rem;
+}
+
+.theme-icon {
+    display: inline-block;
+    line-height: 1;
 }
 
 .hero {
@@ -381,7 +399,7 @@ section {
 
 .primary {
     background: var(--primary);
-    color: #ffffff;
+    color: #fff;
     box-shadow: 4px 4px 0 var(--border);
 }
 
@@ -498,11 +516,9 @@ section {
 }
 
 @keyframes terminalFloat {
-    0%,
-    100% {
-        transform: translateY(0) rotate(0);
+    0%, 100% {
+        transform: translateY(0);
     }
-
     50% {
         transform: translateY(-7px) rotate(0.5deg);
     }
@@ -512,14 +528,14 @@ section {
 .project-card,
 .skill-card {
     position: relative;
+    min-width: 0;
     padding: 26px;
     background: var(--card);
     color: var(--text);
     border: 2px solid var(--border);
     border-radius: var(--radius-md);
     box-shadow: var(--shadow);
-    backdrop-filter: none;
-    transition: transform 250ms ease, box-shadow 250ms ease, background-color 250ms ease, border-color 250ms ease;
+    transition: transform 250ms ease, box-shadow 250ms ease, background-color 250ms ease, border-color 250ms ease, opacity 250ms ease;
 }
 
 .glass-card:hover,
@@ -528,25 +544,6 @@ section {
     transform: translate(-3px, -4px);
     box-shadow: var(--shadow-hover);
     border-color: var(--primary);
-}
-
-.project-card:nth-child(3n + 1) {
-    --card-tilt: -0.5deg;
-}
-
-.project-card:nth-child(3n + 2) {
-    --card-tilt: 0.4deg;
-}
-
-.project-card:nth-child(3n) {
-    --card-tilt: -0.2deg;
-}
-
-.project-card {
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-    transform: rotate(var(--card-tilt, 0deg));
 }
 
 .about-info {
@@ -582,12 +579,12 @@ section {
 
 .tags span:nth-child(even) {
     background: var(--secondary);
-    color: #ffffff;
+    color: #fff;
     transform: rotate(1deg);
 }
 
 .tags span:hover {
-    transform: translateY(-3px) rotate(0deg);
+    transform: translateY(-3px);
 }
 
 .timeline {
@@ -636,7 +633,8 @@ section {
     margin-bottom: 45px;
 }
 
-.filter {
+.filter,
+.filter-button {
     padding: 10px 17px;
     background: var(--card);
     color: var(--text);
@@ -646,20 +644,28 @@ section {
     font-weight: 800;
     cursor: pointer;
     box-shadow: 3px 3px 0 var(--border);
-    transition: transform var(--transition), background-color var(--transition), color var(--transition);
+    transition: transform var(--transition), background-color var(--transition), color var(--transition), box-shadow var(--transition);
 }
 
-.filter:hover {
+.filter:hover,
+.filter-button:hover {
     background: var(--accent);
     color: #202027;
     transform: translateY(-2px);
 }
 
-.filter.active {
+.filter.active,
+.filter-button.active {
     background: var(--primary);
-    color: #ffffff;
+    color: #fff;
     transform: translate(2px, 2px);
     box-shadow: 1px 1px 0 var(--border);
+}
+
+.filter[aria-pressed="true"],
+.filter-button[aria-pressed="true"] {
+    background: var(--primary);
+    color: #fff;
 }
 
 .project-grid {
@@ -667,6 +673,24 @@ section {
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr));
     align-items: stretch;
     gap: 30px;
+}
+
+.project-card {
+    display: flex;
+    flex-direction: column;
+    transform: rotate(var(--card-tilt, 0deg));
+}
+
+.project-card:nth-child(3n + 1) {
+    --card-tilt: -0.5deg;
+}
+
+.project-card:nth-child(3n + 2) {
+    --card-tilt: 0.4deg;
+}
+
+.project-card:nth-child(3n) {
+    --card-tilt: -0.2deg;
 }
 
 .project-card h3 {
@@ -726,7 +750,7 @@ section {
 
 .demo-btn {
     background: var(--primary);
-    color: #ffffff;
+    color: #fff;
     box-shadow: 3px 3px 0 var(--border);
 }
 
@@ -745,8 +769,8 @@ section {
     background: var(--secondary);
 }
 
-.project-card.hidden,
-.project-card[hidden] {
+.project-card[hidden],
+.project-card.hidden {
     display: none !important;
 }
 
@@ -870,7 +894,7 @@ section {
     min-height: 49px;
     padding: 14px 20px;
     background: var(--primary);
-    color: #ffffff;
+    color: #fff;
     border: 2px solid var(--border);
     border-radius: 9px;
     box-shadow: 4px 4px 0 var(--border);
@@ -883,6 +907,12 @@ section {
     background: #4d32ef;
     transform: translate(-2px, -2px);
     box-shadow: 6px 6px 0 var(--border);
+}
+
+#formStatus {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    overflow-wrap: anywhere;
 }
 
 .footer {
@@ -906,30 +936,10 @@ section {
     color: var(--secondary);
 }
 
-::-webkit-scrollbar {
-    width: 12px;
-}
-
-::-webkit-scrollbar-track {
-    background: var(--bg);
-    border-left: 1px solid var(--border-soft);
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--primary);
-    border: 3px solid var(--bg);
-    border-radius: 20px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: var(--secondary);
-}
-
 .glass-card,
 .project-card,
 .skill-card {
     opacity: 1;
-    transform: translateY(0);
 }
 
 .glass-card.show,
@@ -967,6 +977,25 @@ hr {
     border: 0;
     border-top: 2px dashed var(--border-soft);
     margin: 30px 0;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg);
+    border-left: 1px solid var(--border-soft);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border: 3px solid var(--bg);
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary);
 }
 
 @media (max-width: 1100px) {
@@ -1042,6 +1071,36 @@ hr {
 
     .navbar nav {
         display: none;
+    }
+
+    #menuToggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .navbar .main-nav.open {
+        position: absolute;
+        top: calc(100% + 12px);
+        left: 0;
+        right: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 6px;
+        padding: 14px;
+        max-height: calc(100vh - 110px);
+        overflow-y: auto;
+        background: var(--card);
+        border: 2px solid var(--border);
+        border-radius: var(--radius-md);
+        box-shadow: 5px 5px 0 var(--border);
+    }
+
+    .navbar .main-nav.open a {
+        width: 100%;
+        padding: 12px 14px;
+        font-size: 0.95rem;
     }
 
     .section-title {
@@ -1176,7 +1235,8 @@ hr {
         margin-bottom: 32px;
     }
 
-    .filter {
+    .filter,
+    .filter-button {
         padding: 9px 12px;
         font-size: 0.8rem;
     }
