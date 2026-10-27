@@ -15,7 +15,9 @@ const filterTimeouts = new WeakMap();
 filters.forEach((button) => {
     button.addEventListener("click", () => {
         filters.forEach((item) => {
-            item.classList.toggle("active", item === button);
+            const active = item === button;
+            item.classList.toggle("active", active);
+            item.setAttribute("aria-pressed", String(active));
         });
 
         const selectedFilter = button.dataset.filter;
@@ -25,6 +27,7 @@ filters.forEach((button) => {
 
             if (previousTimeout) {
                 window.clearTimeout(previousTimeout);
+                filterTimeouts.delete(card);
             }
 
             const matches =
@@ -132,51 +135,66 @@ const terminalTexts = [
     "AI/ML Learner..."
 ];
 
-if (typing && terminalTexts.length) {
+if (
+    typing &&
+    terminalTexts.length &&
+    !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+) {
     let currentTextIndex = 0;
-    let typingInterval;
 
     typing.textContent = terminalTexts[0];
     typing.style.transition = "opacity 250ms ease";
 
-    function startTerminalTyping() {
-        if (typingInterval) {
-            window.clearInterval(typingInterval);
-        }
+    window.setInterval(() => {
+        currentTextIndex = (currentTextIndex + 1) % terminalTexts.length;
+        typing.style.opacity = "0";
 
-        typingInterval = window.setInterval(() => {
-            currentTextIndex = (currentTextIndex + 1) % terminalTexts.length;
-            typing.style.opacity = "0";
-
-            window.setTimeout(() => {
-                typing.textContent = terminalTexts[currentTextIndex];
-                typing.style.opacity = "1";
-            }, 250);
-        }, 2500);
-    }
-
-    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        startTerminalTyping();
-    }
+        window.setTimeout(() => {
+            typing.textContent = terminalTexts[currentTextIndex];
+            typing.style.opacity = "1";
+        }, 250);
+    }, 2500);
 }
 
-const form = document.querySelector(".contact-form");
+const form = document.getElementById("contactForm");
 
 if (form) {
     form.addEventListener("submit", (event) => {
         event.preventDefault();
 
-        alert("Thank you! I'll get back to you soon.");
+        const name = document.getElementById("contactName")?.value.trim() || "";
+        const email = document.getElementById("contactEmail")?.value.trim() || "";
+        const message = document.getElementById("contactMessage")?.value.trim() || "";
 
-        form.reset();
+        if (!name || !email || !message) {
+            form.reportValidity();
+            return;
+        }
+
+        const subject = encodeURIComponent(`Portfolio enquiry from ${name}`);
+        const body = encodeURIComponent(
+            `Hi Sneha,\n\n${message}\n\nFrom: ${name}\nEmail: ${email}`
+        );
+
+        window.location.href =
+            `mailto:snehaasingh.2409@gmail.com?subject=${subject}&body=${body}`;
     });
+}
+
+const currentYear = document.getElementById("currentYear");
+
+if (currentYear) {
+    currentYear.textContent = new Date().getFullYear();
 }
 
 const revealCards = document.querySelectorAll(
     ".glass-card, .project-card, .skill-card"
 );
 
-if ("IntersectionObserver" in window) {
+if (
+    "IntersectionObserver" in window &&
+    !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+) {
     const observer = new IntersectionObserver(
         (entries, activeObserver) => {
             entries.forEach((entry) => {
