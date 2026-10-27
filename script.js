@@ -1,39 +1,55 @@
+
 const glow = document.querySelector(".cursor-glow");
 
 if (glow && window.matchMedia("(pointer: fine)").matches) {
     window.addEventListener("mousemove", (event) => {
         glow.style.left = `${event.clientX}px`;
         glow.style.top = `${event.clientY}px`;
-    });
+    }, { passive: true });
 }
 
 const filters = document.querySelectorAll(".filter");
 const projects = document.querySelectorAll(".project-card");
+const filterTimeouts = new WeakMap();
 
 filters.forEach((button) => {
     button.addEventListener("click", () => {
-        filters.forEach((item) => item.classList.remove("active"));
-        button.classList.add("active");
+        filters.forEach((item) => {
+            item.classList.toggle("active", item === button);
+        });
 
         const selectedFilter = button.dataset.filter;
 
         projects.forEach((card) => {
+            const previousTimeout = filterTimeouts.get(card);
+
+            if (previousTimeout) {
+                window.clearTimeout(previousTimeout);
+            }
+
             const matches =
                 selectedFilter === "all" ||
                 card.classList.contains(selectedFilter);
 
-            card.style.opacity = "0";
+            if (!matches) {
+                card.style.opacity = "0";
 
-            window.setTimeout(() => {
-                card.hidden = !matches;
-                card.style.display = matches ? "" : "none";
+                const timeout = window.setTimeout(() => {
+                    card.hidden = true;
+                    card.style.display = "none";
+                    filterTimeouts.delete(card);
+                }, 200);
 
-                if (matches) {
-                    requestAnimationFrame(() => {
-                        card.style.opacity = "1";
-                    });
-                }
-            }, 200);
+                filterTimeouts.set(card, timeout);
+            } else {
+                card.hidden = false;
+                card.style.display = "";
+                card.style.opacity = "0";
+
+                requestAnimationFrame(() => {
+                    card.style.opacity = "1";
+                });
+            }
         });
     });
 });
@@ -58,7 +74,6 @@ function setTheme(theme) {
     try {
         localStorage.setItem("theme", theme);
     } catch {
-        return;
     }
 }
 
