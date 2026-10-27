@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,51 +6,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#f7f0df">
     <meta name="description" content="View and download Sneha Singh's resume.">
+    <meta name="color-scheme" content="light dark">
     <title>Resume | Sneha Singh</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="animated-bg"></div>
-    <div class="cursor-glow"></div>
+    <div class="animated-bg" aria-hidden="true"></div>
+    <div class="cursor-glow" aria-hidden="true"></div>
 
     <main class="resume-page">
         <header class="resume-header">
-            <a href="index.html" class="logo">sneha<span>.</span>dev</a>
+            <a href="index.html" class="logo" aria-label="Sneha's portfolio home">sneha<span>.</span>dev</a>
             <a href="index.html" class="secondary resume-back">← Back to portfolio</a>
         </header>
 
-        <section class="resume-content">
+        <section class="resume-content" aria-labelledby="resume-title">
             <div class="resume-intro">
                 <span class="badge">A little about my journey</span>
-                <h1>My <span class="highlight">resume.</span></h1>
+                <h1 id="resume-title">My <span class="highlight">resume.</span></h1>
                 <p>Here's the professional side of my little corner of the internet.</p>
             </div>
 
             <div class="resume-toolbar">
                 <div class="resume-file">
-                    <span class="resume-file-icon">📄</span>
+                    <span class="resume-file-icon" aria-hidden="true">📄</span>
                     <div>
                         <h2>Sneha Singh</h2>
                         <p>Resume · PDF document</p>
                     </div>
                 </div>
 
-                <a href="SnehaSinghCV.pdf" class="primary resume-download" download>
+                <a href="SnehaSinghCV.pdf" class="primary resume-download" download="SnehaSinghCV.pdf">
                     ↓ Download resume
                 </a>
             </div>
 
             <div class="resume-viewer">
                 <iframe
-                    src="SnehaSinghCV.pdf"
-                    title="Sneha Singh resume"
+                    src="SnehaSinghCV.pdf#view=FitH"
+                    title="Sneha Singh resume PDF"
                     width="100%"
                     height="750"
                     loading="lazy"
                 ></iframe>
 
                 <div class="resume-fallback">
-                    Can't see the PDF? <a href="SnehaSinghCV.pdf" target="_blank" rel="noopener noreferrer">Open it in a new tab ↗</a>
+                    Can't see the PDF?
+                    <a href="SnehaSinghCV.pdf" target="_blank" rel="noopener noreferrer">Open it in a new tab ↗</a>
                 </div>
             </div>
 
@@ -60,6 +63,6 @@
         </section>
     </main>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 </html>
