@@ -1,184 +1,141 @@
+
 # ✳ SNEHA SINGH — DEVELOPER, DATA & A LITTLE CHAOS
 
-<p align="center">
-  <img src="assets/portfolio.png" alt="Sneha Singh's Portfolio Preview" width="100%">
-</p>
+**A little code, a lot of curiosity, and projects that turn ideas into something real.**
 
-<p align="center">
-  <strong>Developer by logic. Creative by nature. Forever a work in progress.</strong>
-  <br>
-  A little corner of the internet where code meets curiosity, projects meet personality, and learning never really stops.
-</p>
+I'm Sneha Singh, an M.Sc. Computer Science student at DAVV, Indore, exploring the intersection of software development, data analytics, and AI/ML. I build things, experiment with ideas, break stuff, fix it, and learn something new along the way.
 
-<p align="center">
-  <a href="https://myselfsneha.github.io/sneha-portfolio/">✦ Explore Portfolio</a> ·
-  <a href="https://www.linkedin.com/in/singh--sneha/">LinkedIn ↗</a> ·
-  <a href="https://github.com/myselfsneha">GitHub ↗</a> ·
-  <a href="SnehaSinghCV.pdf">Resume ↗</a>
-</p>
-
-<p align="center">
-  <img src="https://img.shields.io/badge/HTML5-Structure-E34F26?style=flat-square&logo=html5&logoColor=white" alt="HTML5">
-  <img src="https://img.shields.io/badge/CSS3-Style-1572B6?style=flat-square&logo=css3&logoColor=white" alt="CSS3">
-  <img src="https://img.shields.io/badge/JavaScript-Interaction-F7DF1E?style=flat-square&logo=javascript&logoColor=black" alt="JavaScript">
-  <img src="https://img.shields.io/badge/GitHub%20Pages-Deployed-222222?style=flat-square&logo=githubpages&logoColor=white" alt="GitHub Pages">
-</p>
+🌐 **[Visit My Portfolio](https://myselfsneha.github.io/sneha-portfolio/)** · 💼 **[LinkedIn](https://www.linkedin.com/in/singh--sneha/)** · 💻 **[GitHub](https://github.com/myselfsneha)** · 📄 **[Resume](resume.html)**
 
 ---
 
-## 01 / THE IDEA BEHIND IT
+## 01 — THE IDEA
 
-This isn't just a résumé wearing a website costume. ✳
+This portfolio is my little corner of the internet: a place to bring my work, skills, experiments, and learning journey together.
 
-I'm **Sneha Singh**, an M.Sc. Computer Science student at Devi Ahilya Vishwavidyalaya (DAVV), Indore. I'm interested in full-stack development, data analytics, and AI/ML — basically, I enjoy figuring out how things work and then trying to build something useful with what I learn.
+It's built around a simple idea — **keep learning, keep building, and let the work speak.**
 
-I wanted my portfolio to do more than list technologies. It should give people a glimpse of the person behind the projects: what I'm learning, what I've built, and where I'm heading next.
+From full-stack applications to business dashboards and data-driven explorations, every project represents something I've learned, something I've tried, or something I wanted to understand better.
 
-So this repository brings together my work, technical toolkit, experience, and ways to connect, with a design that leaves room for a little personality.
+## 02 — WHAT'S INSIDE
 
-**The philosophy:** useful content first, personality everywhere, and absolutely no need to look like every other developer portfolio.
+- **A personal introduction** — my background, interests, and direction.
+- **Technical skills** — the tools and technologies I'm learning and using.
+- **Project collection** — software development, analytics, and creative work.
+- **Interactive project filters** — explore projects by category.
+- **Light and dark themes** — choose your preferred viewing experience.
+- **Responsive layout** — designed to work across desktop, tablet, and mobile.
+- **Journey section** — a little context behind the person building the projects.
+- **Contact options** — get in touch through WhatsApp or my social profiles.
+- **Dedicated resume page** — a convenient place to view my CV.
 
-## 02 / WHAT'S INSIDE THE BOX?
+## 03 — PROJECTS I'VE BEEN BUILDING
 
-| ✳ Feature | What's there |
+A mix of collaborative applications, analytical explorations, and personal experiments.
+
+### 🎓 EduNexus
+
+**An all-in-one learning ecosystem.**
+
+A collaborative academic platform designed to bring student, faculty, and administrative workflows together in one place.
+
+- **Focus:** Full-stack development, role-based experiences, and academic management.
+- **Technologies:** React, Node.js, Express, and SQL.
+- **Live project:** [Open EduNexus](https://edu-nexus-lilac.vercel.app/)
+- **Repository:** [Explore the code](https://github.com/myselfsneha/EduNexus)
+
+### 📊 Blinkit Sales Analysis Dashboard
+
+**Turning sales data into business insights.**
+
+A Power BI analytics project focused on exploring sales performance, product trends, outlet metrics, and business KPIs.
+
+- **Focus:** Data analysis, dashboard design, KPIs, and business intelligence.
+- **Technologies:** Power BI and data analysis tools.
+- **Repository:** [Explore the project](https://github.com/myselfsneha/Blinkit-Sales-Analysis-Dashboard)
+
+### 🚦 Road Accident Analysis Dashboard
+
+**Finding patterns in road accident data.**
+
+A data analytics project that explores accident-related information and uses visual analysis to make patterns easier to understand.
+
+- **Focus:** Exploratory analysis, visualization, and data-driven interpretation.
+- **Repository:** [Explore the project](https://github.com/myselfsneha/Road-Accident-Analysis-Dashboard)
+
+### 💍 Wedding Crunchers — Data Analysis
+
+**Wedding data, but make it analytical.**
+
+An exploratory data analysis project investigating wedding-related trends, expenses, guest counts, and geographic patterns.
+
+- **Focus:** Data cleaning, exploratory analysis, and visualization.
+- **Technologies:** Python, Pandas, NumPy, Matplotlib, Seaborn, and GeoPandas.
+- **Repository:** [Explore the project](https://github.com/myselfsneha/Wedding-Crunchers-Data-Analysis)
+
+### 🏢 Diamond Square
+
+**A full-stack society management system.**
+
+A web application focused on organizing society-related workflows, including resident management, complaints, visitor tracking, notices, and maintenance billing.
+
+- **Focus:** Full-stack application development and management workflows.
+- **Technologies:** React, Node.js, Express, PostgreSQL, and Supabase.
+- **Repository:** [Explore Diamond Square](https://github.com/myselfsneha/diamond-square)
+
+### 🌐 Sneha's Portfolio
+
+**A website about the person behind the projects.**
+
+My personal portfolio brings together my projects, technical interests, and development journey in one responsive web experience.
+
+- **Focus:** Frontend development, responsive design, interactions, and personal branding.
+- **Technologies:** HTML, CSS, and JavaScript.
+- **Live website:** [Visit the portfolio](https://myselfsneha.github.io/sneha-portfolio/)
+- **Repository:** [Explore the code](https://github.com/myselfsneha/sneha-portfolio)
+
+## 04 — MY TOOLBOX
+
+The technologies I work with and continue exploring.
+
+| Area | Technologies |
 |---|---|
-| Personal introduction | Background, education, interests, and current direction |
-| Project archive | Personal and collaborative development projects plus data dashboards |
-| Experience timeline | Professional, community, open-source, and training experiences |
-| Technical toolkit | Programming, frontend, backend, databases, analytics, and tools |
-| Light and dark themes | A choice of visual atmosphere |
-| Interactive details | Hover states, animations, navigation, and project filtering |
-| Résumé page | A dedicated page for viewing and accessing the PDF résumé |
-| Contact section | Social links and a way to prepare an email message |
-| Responsive layout | A layout designed to adapt to desktop, tablet, and mobile screens |
+| Languages | Python, Java, JavaScript, SQL |
+| Frontend | HTML, CSS, React |
+| Backend | Node.js, Express |
+| Databases | MySQL, PostgreSQL, Supabase |
+| Data & Analytics | Power BI, Pandas, NumPy, Matplotlib, Seaborn, GeoPandas |
+| Core Learning | Data Structures & Algorithms, Computer Networks, AI/ML |
+| Tools | Git, GitHub, VS Code |
 
-## 03 / THE BUILD ARCHIVE
+*My toolbox keeps evolving as I learn, experiment, and build new things.*
 
-A few different corners of my developer brain, all in one place.
+## 05 — HOW THIS PORTFOLIO IS PUT TOGETHER
 
-### ◇ Diamond Square
+A lightweight web project built with the fundamentals of the web.
 
-A society management system focused on resident management, complaints, visitors, maintenance billing, and notices.
-
-**Stack:** React · Node.js · PostgreSQL · Supabase
-
-[View repository](https://github.com/myselfsneha/diamond-square) · [Live demo](https://diamond-square.vercel.app/)
-
-### ✳ EduNexus
-
-A collaborative learning ecosystem designed around student, faculty, and administrator workflows, with authentication, role-based access, and dashboards.
-
-**Stack:** React · Node.js · Express · MySQL
-
-[View repository](https://github.com/myselfsneha/EduNexus) · [Live demo](https://edu-nexus-lilac.vercel.app/)
-
-### ▥ Blinkit Sales Dashboard
-
-An interactive business intelligence project exploring sales performance, inventory patterns, key metrics, and customer insights.
-
-**Stack:** Power BI · Excel
-
-[View repository](https://github.com/myselfsneha/Blinkit-Sales-Analysis-Dashboard)
-
-### 🚦 Road Accident Analysis
-
-A data dashboard exploring accident severity, weather conditions, casualties, and trends within the dataset.
-
-**Stack:** Excel · Data Analysis · Dashboard Design
-
-[View repository](https://github.com/myselfsneha/Road-Accident-Analysis-Dashboard)
-
-### ✿ Wedding Crunchers
-
-An exploratory data analysis project investigating wedding costs, seasonal trends, and geographical patterns.
-
-**Stack:** Python · Pandas · GeoPandas
-
-[View repository](https://github.com/myselfsneha/Wedding-Crunchers-Data-Analysis)
-
-### 🖥️ The Portfolio Itself
-
-A hand-built personal website that brings together my projects, experience, skills, and contact information.
-
-**Stack:** HTML · CSS · JavaScript
-
-[View repository](https://github.com/myselfsneha/sneha-portfolio) · [Visit website](https://myselfsneha.github.io/sneha-portfolio/)
-
-## 04 / THE TOOLBOX
-
-<table>
-  <tr>
-    <td><strong>Programming</strong></td>
-    <td>Python, Java, JavaScript, SQL</td>
-  </tr>
-  <tr>
-    <td><strong>Frontend</strong></td>
-    <td>HTML5, CSS3, React.js</td>
-  </tr>
-  <tr>
-    <td><strong>Backend</strong></td>
-    <td>Node.js, Express.js, REST APIs</td>
-  </tr>
-  <tr>
-    <td><strong>Databases</strong></td>
-    <td>MySQL, PostgreSQL, Supabase</td>
-  </tr>
-  <tr>
-    <td><strong>Data & Analytics</strong></td>
-    <td>Power BI, Excel, Pandas, NumPy</td>
-  </tr>
-  <tr>
-    <td><strong>Tools</strong></td>
-    <td>Git, GitHub, VS Code, Jupyter Notebook</td>
-  </tr>
-  <tr>
-    <td><strong>Deployment</strong></td>
-    <td>Vercel, Render, Netlify, GitHub Pages</td>
-  </tr>
-  <tr>
-    <td><strong>AI & ML</strong></td>
-    <td>Machine learning concepts, prompt engineering, and AI tools</td>
-  </tr>
-  <tr>
-    <td><strong>Design</strong></td>
-    <td>Figma, Canva</td>
-  </tr>
-</table>
-
-## 05 / HOW IT'S PUT TOGETHER
-
-No framework maze. No complicated build pipeline. Just the fundamentals working together.
-
-- **HTML5** structures the pages and their content.
-- **CSS3** handles the layout, visual identity, responsive styling, transitions, and animations.
-- **JavaScript** adds interactive behavior to the interface.
-- **Git and GitHub** support version control and repository hosting.
-- **GitHub Pages** publishes the portfolio online.
+- **HTML** structures the content and sections.
+- **CSS** handles the visual identity, responsive layouts, transitions, and themes.
+- **JavaScript** powers project filtering, navigation interactions, theme switching, and the contact workflow.
+- **GitHub Pages** hosts the live portfolio.
 
 ### Repository map
 
 ```text
 sneha-portfolio/
 ├── assets/
-│   ├── accident.png
-│   ├── blinkit.png
-│   ├── portfolio.png
-│   ├── rohan.png
-│   ├── sneha.jpg
-│   └── wedding.png
 ├── index.html
 ├── style.css
 ├── script.js
 ├── resume.html
 ├── SnehaSinghCV.pdf
-├── portfolio.png
 ├── README.md
 └── LICENSE
 ```
 
-## 06 / RUN IT LOCALLY
+## 06 — RUN IT LOCALLY
 
-Want to explore the code or experiment with the design? Go for it.
+Want to explore the code or make your own changes?
 
 **1. Clone the repository**
 
@@ -186,66 +143,64 @@ Want to explore the code or experiment with the design? Go for it.
 git clone https://github.com/myselfsneha/sneha-portfolio.git
 ```
 
-**2. Enter the project directory**
+**2. Open the project directory**
 
 ```bash
 cd sneha-portfolio
 ```
 
-**3. Open the website**
+**3. Run the website**
 
-Open `index.html` in your browser, or use the Live Server extension in VS Code for a local development preview.
+Open `index.html` in your browser, or use the Live Server extension in VS Code for a convenient local development experience.
 
-That's it. The portfolio uses plain HTML, CSS, and JavaScript, so there is no framework installation or build command required.
+That's it — no complicated setup required.
 
-## 07 / THE DESIGN NOTES
+## 07 — THE DESIGN PHILOSOPHY
 
-The visual direction is where the practical and personal sides of the project meet.
+I wanted this portfolio to feel personal rather than like another generic developer template.
 
-- **Expressive, not cluttered:** visual personality without making the content hard to read.
-- **Playful details:** small labels, unexpected accents, and developer-inspired elements.
-- **Projects in focus:** the work should be easy to discover and explore.
-- **Responsive by design:** the layout should adapt to different screen sizes.
-- **Theme flexibility:** light and dark appearances for different preferences.
-- **Room to evolve:** the website can change as my skills and projects grow.
+- **Expressive, not overly corporate.**
+- **Functional without feeling lifeless.**
+- **Playful details with a clear structure.**
+- **Projects and skills presented without losing the personality behind them.**
+- **Responsive experiences that remain usable across screen sizes.**
 
-A portfolio isn't a finished product that gets locked away. It's a snapshot of the journey, and the journey keeps going.
+The goal is simple: a portfolio that feels like mine while making it easy for someone to explore what I build.
 
-## 08 / THE JOURNEY CONTINUES
+## 08 — THE JOURNEY SO FAR
 
-This repository has evolved through iterations, interface refinements, résumé integration, and updates to the way my work is presented.
+I'm currently pursuing my **M.Sc. in Computer Science at SCSIT, DAVV, Indore**, while exploring software engineering, data analytics, and AI/ML.
 
-The goal isn't to make the website look like I know everything already. It's to document what I'm building, share what I'm learning, and make it easier for people to discover my work.
+I enjoy learning by building — whether that's collaborating on an academic platform, analyzing a dataset, experimenting with a dashboard, or improving my own portfolio.
 
-There will be more things to build, more skills to pick up, and more ideas that start with *"wait, what if I tried this?"*
+I'm still learning, still experimenting, and still figuring out how to turn the next idea into something useful.
 
-That's the fun part.
+**One project, one lesson, one commit at a time.** 🌱
 
-## 09 / FEEDBACK & CONTRIBUTIONS
+## 09 — IDEAS, FEEDBACK & COLLABORATIONS
 
-This is my personal portfolio, but thoughtful feedback and suggestions are always welcome.
+Found something interesting? Have an idea for improvement? Want to discuss a project or collaborate?
 
-If you spot an issue or have an idea for improvement, feel free to open an issue or submit a pull request.
+I'm happy to connect, exchange ideas, and learn from other people building cool things.
 
-## 10 / FIND ME AROUND THE INTERNET
+- 💼 [Connect on LinkedIn](https://www.linkedin.com/in/singh--sneha/)
+- 💻 [Explore my GitHub](https://github.com/myselfsneha)
+- 🌐 [Visit my portfolio](https://myselfsneha.github.io/sneha-portfolio/)
 
-<p align="center">
-  <a href="https://myselfsneha.github.io/sneha-portfolio/"><strong>✳ Portfolio</strong></a> ·
-  <a href="https://github.com/myselfsneha"><strong>⌘ GitHub</strong></a> ·
-  <a href="https://www.linkedin.com/in/singh--sneha/"><strong>↗ LinkedIn</strong></a> ·
-  <a href="mailto:snehaasingh.2409@gmail.com"><strong>✉ Email</strong></a>
-</p>
+## 10 — FIND ME AROUND THE INTERNET
 
-If you've made it this far, thank you for stopping by. Have a look around, explore the projects, and say hello if something catches your eye.
+**Sneha Singh** · M.Sc. Computer Science · Software Development · Data Analytics · AI/ML
 
-## LICENSE
-
-This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
+[Portfolio](https://myselfsneha.github.io/sneha-portfolio/) · [LinkedIn](https://www.linkedin.com/in/singh--sneha/) · [GitHub](https://github.com/myselfsneha)
 
 ---
 
 <p align="center">
-  <strong>Made with code, curiosity, and a little chaos. 🫶🏻</strong>
-  <br>
-  © Sneha Singh
+  Built with curiosity, caffeine, and a questionable number of tabs open. ✳
+  <br />
+  <strong>Thanks for stopping by!</strong> 🫶🏻
 </p>
+
+## 📄 LICENSE
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
