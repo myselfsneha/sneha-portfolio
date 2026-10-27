@@ -1,279 +1,244 @@
-const themeToggle = document.getElementById("themeToggle");
-const menuToggle = document.getElementById("menuToggle");
-const mainNav = document.getElementById("mainNav");
-const contactForm = document.getElementById("contactForm");
-const formStatus = document.getElementById("formStatus");
-const currentYear = document.getElementById("currentYear");
+document.addEventListener("DOMContentLoaded", () => {
+  const root = document.documentElement;
 
-const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-const whatsappNumber = "916232448666";
+  // ── Theme toggle ──────────────────────────────────────
+  const themeToggle = document.getElementById("themeToggle");
+  const savedTheme = root.dataset.theme;
 
-function setTheme(theme) {
-  document.documentElement.dataset.theme = theme;
-
-  if (themeToggle) {
-    const icon = themeToggle.querySelector(".theme-icon");
-
-    if (icon) {
-      icon.textContent = theme === "dark" ? "☀" : "☾";
-    }
-
-    themeToggle.setAttribute(
-      "aria-label",
-      theme === "dark" ? "Switch to light theme" : "Switch to dark theme"
-    );
-
-    themeToggle.setAttribute("aria-pressed", String(theme === "dark"));
-  }
-}
-
-function getInitialTheme() {
-  const savedTheme = document.documentElement.dataset.theme;
-
-  if (savedTheme === "light" || savedTheme === "dark") {
-    return savedTheme;
-  }
-
-  return window.matchMedia("(prefers-color-scheme: dark)").matches
+  const preferredTheme = window.matchMedia(
+    "(prefers-color-scheme: dark)"
+  ).matches
     ? "dark"
     : "light";
-}
 
-setTheme(getInitialTheme());
+  root.dataset.theme = savedTheme || preferredTheme;
 
-themeToggle?.addEventListener("click", () => {
-  const currentTheme = document.documentElement.dataset.theme || "light";
-  setTheme(currentTheme === "dark" ? "light" : "dark");
-});
+  function updateThemeButton() {
+    if (!themeToggle) return;
 
-function closeMenu() {
-  if (!menuToggle || !mainNav) return;
+    const isDark = root.dataset.theme === "dark";
 
-  mainNav.classList.remove("open");
-  menuToggle.setAttribute("aria-expanded", "false");
-  menuToggle.setAttribute("aria-label", "Open navigation menu");
-}
-
-menuToggle?.addEventListener("click", () => {
-  if (!mainNav) return;
-
-  const isOpen = mainNav.classList.toggle("open");
-
-  menuToggle.setAttribute("aria-expanded", String(isOpen));
-  menuToggle.setAttribute(
-    "aria-label",
-    isOpen ? "Close navigation menu" : "Open navigation menu"
-  );
-});
-
-mainNav?.querySelectorAll('a[href^="#"]').forEach((link) => {
-  link.addEventListener("click", closeMenu);
-});
-
-document.addEventListener("click", (event) => {
-  if (!mainNav || !menuToggle || !mainNav.classList.contains("open")) return;
-
-  if (!mainNav.contains(event.target) && !menuToggle.contains(event.target)) {
-    closeMenu();
+    themeToggle.textContent = isDark ? "☀" : "☾";
+    themeToggle.setAttribute(
+      "aria-label",
+      isDark ? "Switch to light theme" : "Switch to dark theme"
+    );
+    themeToggle.setAttribute("aria-pressed", String(isDark));
   }
-});
 
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape" && mainNav?.classList.contains("open")) {
-    closeMenu();
-    menuToggle?.focus();
-  }
-});
+  updateThemeButton();
 
-window.addEventListener("resize", () => {
-  if (window.innerWidth > 900) {
-    closeMenu();
-  }
-});
+  themeToggle?.addEventListener("click", () => {
+    root.dataset.theme =
+      root.dataset.theme === "dark" ? "light" : "dark";
 
-const filterButtons = document.querySelectorAll(".filter-button");
-const projectCards = document.querySelectorAll(".project-card");
-
-filterButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const selectedFilter = button.dataset.filter || "all";
-
-    filterButtons.forEach((filterButton) => {
-      const isActive = filterButton === button;
-
-      filterButton.classList.toggle("active", isActive);
-      filterButton.setAttribute("aria-pressed", String(isActive));
-    });
-
-    projectCards.forEach((card) => {
-      const category = card.dataset.category || "";
-      const shouldShow =
-        selectedFilter === "all" || category === selectedFilter;
-
-      card.hidden = !shouldShow;
-    });
+    updateThemeButton();
   });
-});
 
-const navLinks = document.querySelectorAll('.main-nav a[href^="#"]');
-const sections = [...navLinks]
-  .map((link) => document.querySelector(link.getAttribute("href")))
-  .filter(Boolean);
+  // ── Mobile navigation ─────────────────────────────────
+  const menuToggle = document.getElementById("menuToggle");
+  const mainNav = document.getElementById("mainNav");
 
-if ("IntersectionObserver" in window && sections.length) {
-  const sectionObserver = new IntersectionObserver(
-    (entries) => {
-      const visibleSections = entries
-        .filter((entry) => entry.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+  function closeMenu() {
+    if (!menuToggle || !mainNav) return;
 
-      if (!visibleSections.length) return;
+    menuToggle.setAttribute("aria-expanded", "false");
+    mainNav.classList.remove("is-open");
+    menuToggle.classList.remove("is-active");
+  }
 
-      const currentId = visibleSections[0].target.id;
+  menuToggle?.addEventListener("click", () => {
+    if (!mainNav) return;
 
-      navLinks.forEach((link) => {
-        if (link.getAttribute("href") === `#${currentId}`) {
-          link.setAttribute("aria-current", "location");
-        } else {
-          link.removeAttribute("aria-current");
-        }
-      });
-    },
-    {
-      rootMargin: "-20% 0px -55% 0px",
-      threshold: [0, 0.2, 0.5, 0.8]
+    const isOpen =
+      menuToggle.getAttribute("aria-expanded") === "true";
+
+    menuToggle.setAttribute("aria-expanded", String(!isOpen));
+    mainNav.classList.toggle("is-open", !isOpen);
+    menuToggle.classList.toggle("is-active", !isOpen);
+  });
+
+  mainNav?.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener("click", closeMenu);
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeMenu();
+  });
+
+  document.addEventListener("click", (event) => {
+    if (
+      mainNav &&
+      menuToggle &&
+      !mainNav.contains(event.target) &&
+      !menuToggle.contains(event.target)
+    ) {
+      closeMenu();
     }
-  );
+  });
 
-  sections.forEach((section) => sectionObserver.observe(section));
-}
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 768) closeMenu();
+  });
 
-const revealElements = document.querySelectorAll(
-  ".glass-card, .project-card, .skill-card, .timeline-item"
-);
+  // ── Project filters ───────────────────────────────────
+  const filterButtons = document.querySelectorAll("[data-filter]");
+  const projectCards = document.querySelectorAll("[data-category]");
 
-if ("IntersectionObserver" in window && !prefersReducedMotion.matches) {
-  const revealObserver = new IntersectionObserver(
-    (entries, observer) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const selectedFilter = button.dataset.filter;
 
-        entry.target.classList.add("is-visible");
-        observer.unobserve(entry.target);
+      filterButtons.forEach((filterButton) => {
+        const isActive = filterButton === button;
+
+        filterButton.classList.toggle("active", isActive);
+        filterButton.setAttribute("aria-pressed", String(isActive));
       });
-    },
-    {
-      threshold: 0.12,
-      rootMargin: "0px 0px -30px 0px"
-    }
+
+      projectCards.forEach((card) => {
+        const category = card.dataset.category;
+        const shouldShow =
+          selectedFilter === "all" ||
+          category === selectedFilter;
+
+        card.hidden = !shouldShow;
+      });
+    });
+  });
+
+  // ── Active navigation link ────────────────────────────
+  const navLinks = document.querySelectorAll(
+    '#mainNav a[href^="#"]'
   );
 
-  revealElements.forEach((element) => {
-    element.classList.add("reveal-ready");
-    revealObserver.observe(element);
-  });
-} else {
-  revealElements.forEach((element) => {
-    element.classList.add("is-visible");
-  });
-}
+  const sections = Array.from(navLinks)
+    .map((link) => {
+      const target = document.querySelector(link.getAttribute("href"));
 
-const terminalLines = [
-  "const dream = true;",
-  "while (curious) {",
-  "keepBuilding();",
-  "}",
-  "learning = 'always';",
-  "shipSmallThings();"
-];
+      return target ? { link, target } : null;
+    })
+    .filter(Boolean);
 
-const terminal = document.querySelector(".art-card-code");
+  if ("IntersectionObserver" in window && sections.length) {
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        const visibleSections = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort(
+            (a, b) =>
+              b.intersectionRatio - a.intersectionRatio
+          );
 
-if (terminal && !prefersReducedMotion.matches) {
-  const codeLines = terminal.querySelectorAll(".code-line");
-  let currentLine = 0;
+        if (!visibleSections.length) return;
 
-  if (codeLines.length) {
-    window.setInterval(() => {
-      currentLine = (currentLine + 1) % terminalLines.length;
+        const activeId = visibleSections[0].target.id;
 
-      const nextLine = terminalLines[currentLine];
-      const targetLine = codeLines[currentLine % codeLines.length];
+        sections.forEach(({ link, target }) => {
+          const isActive = target.id === activeId;
 
-      if (targetLine) {
-        targetLine.textContent = nextLine;
+          link.classList.toggle("active", isActive);
+
+          if (isActive) {
+            link.setAttribute("aria-current", "location");
+          } else {
+            link.removeAttribute("aria-current");
+          }
+        });
+      },
+      {
+        rootMargin: "-20% 0px -60% 0px",
+        threshold: [0, 0.15, 0.35, 0.6],
       }
-    }, 3200);
-  }
-}
+    );
 
-contactForm?.addEventListener("submit", (event) => {
-  event.preventDefault();
-
-  if (!contactForm.reportValidity()) return;
-
-  const name = document.getElementById("contactName")?.value.trim() || "";
-  const email = document.getElementById("contactEmail")?.value.trim() || "";
-  const message =
-    document.getElementById("contactMessage")?.value.trim() || "";
-
-  if (!name || !email || !message) {
-    if (formStatus) {
-      formStatus.textContent = "Please fill in all three fields first.";
-    }
-    return;
+    sections.forEach(({ target }) => {
+      sectionObserver.observe(target);
+    });
   }
 
-  const whatsappMessage = [
-    "Hi Sneha! 👋",
-    "",
-    `Name: ${name}`,
-    `Email: ${email}`,
-    "",
-    "Message:",
-    message
-  ].join("\n");
+  // ── Scroll reveal animations ──────────────────────────
+  const revealElements = document.querySelectorAll(
+    ".glass-card, .project-card, .skill-card, .timeline-item"
+  );
 
-  const whatsappUrl =
-    `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+  if ("IntersectionObserver" in window && revealElements.length) {
+    revealElements.forEach((element) => {
+      element.classList.add("reveal-element");
+    });
 
-  if (formStatus) {
-    formStatus.textContent =
-      "Opening WhatsApp with your message. Review it there and tap Send.";
+    const revealObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      },
+      {
+        threshold: 0.12,
+        rootMargin: "0px 0px -30px 0px",
+      }
+    );
+
+    revealElements.forEach((element) => {
+      revealObserver.observe(element);
+    });
   }
 
-  const whatsappWindow = window.open(whatsappUrl, "_blank");
+  // ── Contact form → WhatsApp ───────────────────────────
+  const contactForm = document.getElementById("contactForm");
+  const formStatus = document.getElementById("formStatus");
 
-  if (whatsappWindow) {
-    whatsappWindow.opener = null;
-  } else {
-    window.location.href = whatsappUrl;
-  }
-});
-
-if (currentYear) {
-  currentYear.textContent = String(new Date().getFullYear());
-}
-
-document.querySelectorAll('a[href^="#"]').forEach((link) => {
-  link.addEventListener("click", (event) => {
-    const href = link.getAttribute("href");
-
-    if (!href || href === "#") return;
-
-    const target = document.querySelector(href);
-
-    if (!target) return;
-
+  contactForm?.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    target.scrollIntoView({
-      behavior: prefersReducedMotion.matches ? "auto" : "smooth",
-      block: "start"
-    });
+    const nameField = contactForm.querySelector('[name="name"]');
+    const emailField = contactForm.querySelector('[name="email"]');
+    const messageField = contactForm.querySelector(
+      '[name="message"]'
+    );
 
-    if (window.location.hash !== href) {
-      history.replaceState(null, "", href);
+    const name = nameField?.value.trim() || "";
+    const email = emailField?.value.trim() || "";
+    const message = messageField?.value.trim() || "";
+
+    if (!name || !email || !message) {
+      if (formStatus) {
+        formStatus.textContent =
+          "Please fill in all the fields before continuing.";
+      }
+
+      return;
     }
+
+    const whatsappMessage = [
+      "Hi Sneha! I'd like to get in touch.",
+      "",
+      `Name: ${name}`,
+      `Email: ${email}`,
+      "",
+      "Message:",
+      message,
+    ].join("\n");
+
+    const whatsappURL =
+      "https://wa.me/916232448666?text=" +
+      encodeURIComponent(whatsappMessage);
+
+    if (formStatus) {
+      formStatus.textContent =
+        "Opening WhatsApp… review your message and send it there.";
+    }
+
+    window.open(whatsappURL, "_blank", "noopener,noreferrer");
   });
+
+  // ── Automatic footer year ─────────────────────────────
+  const yearElement = document.getElementById("currentYear");
+
+  if (yearElement) {
+    yearElement.textContent = new Date().getFullYear();
+  }
 });
