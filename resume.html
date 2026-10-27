@@ -1,265 +1,260 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#f7f0df">
-    <meta name="description" content="View and download Sneha Singh's resume.">
-    <meta name="color-scheme" content="light dark">
-    <title>Resume | Sneha Singh</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        .resume-page {
-            width: min(1100px, 100%);
-            min-height: 100vh;
-            margin: 0 auto;
-            padding: 28px 5% 50px;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        .resume-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 18px;
-            margin-bottom: 65px;
-        }
+  <meta
+    name="description"
+    content="Sneha Singh's resume — Computer Science postgraduate, software development, Python, web development, and data analytics."
+  >
+  <meta name="theme-color" content="#f6f1e9">
 
-        .resume-back {
-            min-height: 42px;
-            padding: 10px 16px;
-            font-size: 0.88rem;
-        }
+  <title>Resume | Sneha Singh</title>
 
-        .resume-content {
-            padding: 0;
-        }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-        .resume-intro {
-            margin-bottom: 42px;
-            text-align: center;
-        }
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap"
+    rel="stylesheet"
+  >
 
-        .resume-intro .badge {
-            margin-bottom: 22px;
-        }
+  <link rel="stylesheet" href="style.css">
 
-        .resume-intro h1 {
-            font-size: clamp(3rem, 8vw, 5.5rem);
-            font-weight: 900;
-            line-height: 1;
-            letter-spacing: -0.075em;
-        }
+  <style>
+    .resume-page {
+      min-height: calc(100vh - 160px);
+      padding-block: 65px 90px;
+    }
 
-        .resume-intro p {
-            max-width: 520px;
-            margin: 22px auto 0;
-            color: var(--text-light);
-            line-height: 1.8;
-        }
+    .resume-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 35px;
+    }
 
-        .resume-toolbar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 22px;
-            flex-wrap: wrap;
-            margin-bottom: 22px;
-            padding: 22px;
-            background: var(--card);
-            border: 2px solid var(--border);
-            border-radius: var(--radius-md);
-            box-shadow: var(--shadow);
-        }
+    .resume-header h1 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 6vw, 4.7rem);
+      font-weight: 500;
+      letter-spacing: -0.05em;
+      line-height: 1.1;
+    }
 
-        .resume-file {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            min-width: 0;
-        }
+    .resume-header p {
+      max-width: 540px;
+      margin: 15px 0 0;
+      color: var(--text-soft);
+    }
 
-        .resume-file-icon {
-            display: grid;
-            place-items: center;
-            width: 52px;
-            height: 52px;
-            flex-shrink: 0;
-            background: var(--accent);
-            border: 2px solid var(--border);
-            border-radius: 12px;
-            font-size: 1.5rem;
-        }
+    .resume-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      flex-shrink: 0;
+    }
 
-        .resume-file h2 {
-            font-size: 1.05rem;
-            font-weight: 900;
-            overflow-wrap: anywhere;
-        }
+    .resume-frame {
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
 
-        .resume-file p {
-            margin-top: 4px;
-            color: var(--text-light);
-            font-size: 0.85rem;
-        }
+    .resume-frame iframe {
+      display: block;
+      width: 100%;
+      height: min(1100px, 110vh);
+      min-height: 650px;
+      border: 0;
+      background: white;
+    }
 
-        .resume-download {
-            flex-shrink: 0;
-        }
+    .resume-fallback {
+      padding: 28px;
+      color: var(--text-soft);
+      text-align: center;
+    }
 
-        .resume-viewer {
-            overflow: hidden;
-            background: var(--card);
-            border: 2px solid var(--border);
-            border-radius: var(--radius-md);
-            box-shadow: var(--shadow);
-        }
+    .resume-fallback a {
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: underline;
+    }
 
-        .resume-viewer iframe {
-            display: block;
-            width: 100%;
-            height: min(78vh, 900px);
-            min-height: 500px;
-            border: 0;
-            background: #fff;
-        }
+    .resume-note {
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 0.85rem;
+      text-align: center;
+    }
 
-        .resume-fallback {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 8px;
-            padding: 18px;
-            color: var(--text-light);
-            border-top: 2px solid var(--border-soft);
-            text-align: center;
-            font-size: 0.9rem;
-        }
+    @media (max-width: 700px) {
+      .resume-page {
+        padding-block: 45px 65px;
+      }
 
-        .resume-fallback a {
-            color: var(--primary);
-            font-weight: 800;
-            text-underline-offset: 4px;
-        }
+      .resume-header {
+        align-items: flex-start;
+        flex-direction: column;
+      }
 
-        .resume-footer {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 35px;
-            color: var(--text-light);
-            font-size: 0.88rem;
-        }
+      .resume-actions {
+        width: 100%;
+      }
 
-        .resume-footer a {
-            color: var(--primary);
-            font-weight: 800;
-            text-decoration: none;
-        }
+      .resume-actions .btn {
+        flex: 1;
+      }
 
-        .resume-footer a:hover {
-            color: var(--secondary);
-        }
+      .resume-frame iframe {
+        height: 75vh;
+        min-height: 500px;
+      }
+    }
 
-        @media (max-width: 600px) {
-            .resume-page {
-                padding: 20px 6% 32px;
-            }
+    @media print {
+      .navbar,
+      .resume-header,
+      .resume-note,
+      .footer {
+        display: none !important;
+      }
 
-            .resume-header {
-                margin-bottom: 48px;
-            }
+      .resume-page {
+        padding: 0;
+      }
 
-            .resume-intro {
-                margin-bottom: 32px;
-            }
+      .resume-frame {
+        border: 0;
+        box-shadow: none;
+      }
 
-            .resume-toolbar {
-                align-items: stretch;
-                padding: 17px;
-            }
-
-            .resume-download {
-                width: 100%;
-            }
-
-            .resume-viewer iframe {
-                height: 65vh;
-                min-height: 420px;
-            }
-
-            .resume-footer {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .resume-page *,
-            .resume-page *::before,
-            .resume-page *::after {
-                animation: none !important;
-                transition: none !important;
-            }
-        }
-    </style>
+      .resume-frame iframe {
+        height: 100vh;
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <div class="animated-bg" aria-hidden="true"></div>
-    <div class="cursor-glow" aria-hidden="true"></div>
+  <header class="navbar">
+    <div class="nav-container">
+      <a class="logo" href="index.html" aria-label="Sneha Singh — Home">
+        <span class="logo-mark">S.</span>
+        <span>Sneha Singh</span>
+      </a>
 
-    <main class="resume-page">
-        <header class="resume-header">
-            <a href="index.html" class="logo" aria-label="Sneha's portfolio home">sneha<span>.</span>dev</a>
-            <a href="index.html" class="secondary resume-back">← Back to portfolio</a>
-        </header>
+      <nav id="mainNav" class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
 
-        <section class="resume-content" aria-labelledby="resume-title">
-            <div class="resume-intro">
-                <span class="badge">A little about my journey</span>
-                <h1 id="resume-title">My <span class="highlight">resume.</span></h1>
-                <p>Here's the professional side of my little corner of the internet.</p>
-            </div>
+      <div class="nav-actions">
+        <button
+          class="theme-toggle"
+          id="themeToggle"
+          type="button"
+          aria-label="Switch theme"
+          aria-pressed="false"
+        >☾</button>
 
-            <div class="resume-toolbar">
-                <div class="resume-file">
-                    <span class="resume-file-icon" aria-hidden="true">📄</span>
-                    <div>
-                        <h2>Sneha Singh</h2>
-                        <p>Resume · PDF document</p>
-                    </div>
-                </div>
+        <button
+          class="menu-toggle"
+          id="menuToggle"
+          type="button"
+          aria-label="Toggle navigation"
+          aria-controls="mainNav"
+          aria-expanded="false"
+        >☰</button>
+      </div>
+    </div>
+  </header>
 
-                <a href="SnehaSinghCV.pdf" class="primary resume-download" download="SnehaSinghCV.pdf">
-                    ↓ Download resume
-                </a>
-            </div>
+  <main class="resume-page">
+    <div class="container">
+      <div class="resume-header">
+        <div>
+          <p class="section-eyebrow">A little about my journey</p>
+          <h1>My <span class="italic-text accent-text">resume.</span></h1>
+          <p>
+            My education, technical skills, projects, and experience —
+            all in one place.
+          </p>
+        </div>
 
-            <div class="resume-viewer">
-                <iframe
-                    src="SnehaSinghCV.pdf#view=FitH"
-                    title="Sneha Singh resume PDF"
-                    width="100%"
-                    height="750"
-                    loading="lazy"
-                ></iframe>
+        <div class="resume-actions">
+          <a class="btn btn-secondary" href="index.html">
+            ← Back to portfolio
+          </a>
 
-                <div class="resume-fallback">
-                    Can't see the PDF?
-                    <a href="SnehaSinghCV.pdf" target="_blank" rel="noopener noreferrer">Open it in a new tab ↗</a>
-                </div>
-            </div>
-        </section>
+          <a
+            class="btn btn-primary"
+            href="SnehaSinghCV.pdf"
+            download
+          >
+            Download CV ↗
+          </a>
+        </div>
+      </div>
 
-        <footer class="resume-footer">
-            <span>Made with curiosity & a little chaos ✳</span>
-            <a href="index.html">Back to the good stuff ↑</a>
-        </footer>
-    </main>
+      <section
+        class="resume-frame"
+        aria-label="Resume PDF preview"
+        style="padding: 0;"
+      >
+        <iframe
+          src="SnehaSinghCV.pdf"
+          title="Sneha Singh resume PDF"
+          loading="lazy"
+        ></iframe>
 
-    <script src="script.js" defer></script>
+        <div class="resume-fallback">
+          Having trouble viewing the document?
+          <a href="SnehaSinghCV.pdf" target="_blank" rel="noopener noreferrer">
+            Open the resume PDF in a new tab
+          </a>.
+        </div>
+      </section>
+
+      <p class="resume-note">
+        Prefer a copy? Use the download button above to save the PDF.
+      </p>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>
+        © <span id="currentYear"></span> Sneha Singh. Built with curiosity
+        and a little bit of chaos.
+      </p>
+
+      <div class="footer-links">
+        <a
+          href="https://github.com/myselfsneha"
+          target="_blank"
+          rel="noopener noreferrer"
+        >GitHub ↗</a>
+
+        <a
+          href="https://www.linkedin.com/in/singh--sneha/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >LinkedIn ↗</a>
+
+        <a href="index.html">Portfolio</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
