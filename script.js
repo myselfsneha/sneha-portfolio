@@ -1,4 +1,3 @@
-
 const glow = document.querySelector(".cursor-glow");
 
 if (glow && window.matchMedia("(pointer: fine)").matches) {
@@ -8,7 +7,7 @@ if (glow && window.matchMedia("(pointer: fine)").matches) {
     }, { passive: true });
 }
 
-const filters = document.querySelectorAll(".filter");
+const filters = document.querySelectorAll(".filter-button");
 const projects = document.querySelectorAll(".project-card");
 const filterTimeouts = new WeakMap();
 
@@ -32,7 +31,7 @@ filters.forEach((button) => {
 
             const matches =
                 selectedFilter === "all" ||
-                card.classList.contains(selectedFilter);
+                card.dataset.category === selectedFilter;
 
             if (!matches) {
                 card.style.opacity = "0";
@@ -66,7 +65,14 @@ function setTheme(theme) {
     document.documentElement.style.colorScheme = isDark ? "dark" : "light";
 
     if (themeToggle) {
-        themeToggle.textContent = isDark ? "☀️" : "🌙";
+        const icon = themeToggle.querySelector(".theme-icon");
+
+        if (icon) {
+            icon.textContent = isDark ? "☀️" : "☾";
+        } else {
+            themeToggle.textContent = isDark ? "☀️" : "🌙";
+        }
+
         themeToggle.setAttribute(
             "aria-label",
             isDark ? "Switch to light theme" : "Switch to dark theme"
@@ -76,17 +82,14 @@ function setTheme(theme) {
 
     try {
         localStorage.setItem("theme", theme);
-    } catch {
-    }
+    } catch {}
 }
 
 let savedTheme = "light";
 
 try {
     savedTheme = localStorage.getItem("theme") || "light";
-} catch {
-    savedTheme = "light";
-}
+} catch {}
 
 setTheme(savedTheme === "dark" ? "dark" : "light");
 
@@ -97,8 +100,37 @@ if (themeToggle) {
     });
 }
 
+const menuToggle = document.getElementById("menuToggle");
+const mainNav = document.getElementById("mainNav");
+
+if (menuToggle && mainNav) {
+    menuToggle.addEventListener("click", () => {
+        const isExpanded = menuToggle.getAttribute("aria-expanded") === "true";
+
+        menuToggle.setAttribute("aria-expanded", String(!isExpanded));
+        mainNav.classList.toggle("open", !isExpanded);
+        document.body.classList.toggle("menu-open", !isExpanded);
+    });
+
+    mainNav.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+            menuToggle.setAttribute("aria-expanded", "false");
+            mainNav.classList.remove("open");
+            document.body.classList.remove("menu-open");
+        });
+    });
+
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+            menuToggle.setAttribute("aria-expanded", "false");
+            mainNav.classList.remove("open");
+            document.body.classList.remove("menu-open");
+        }
+    });
+}
+
 const sections = document.querySelectorAll("section[id]");
-const navLinks = document.querySelectorAll('.navbar nav a[href^="#"]');
+const navLinks = document.querySelectorAll('.main-nav a[href^="#"]');
 
 function updateActiveNav() {
     let currentSection = "";
@@ -141,7 +173,6 @@ if (
     !window.matchMedia("(prefers-reduced-motion: reduce)").matches
 ) {
     let currentTextIndex = 0;
-
     typing.textContent = terminalTexts[0];
     typing.style.transition = "opacity 250ms ease";
 
@@ -157,27 +188,59 @@ if (
 }
 
 const form = document.getElementById("contactForm");
+const formStatus = document.getElementById("formStatus");
 
 if (form) {
     form.addEventListener("submit", (event) => {
         event.preventDefault();
 
-        const name = document.getElementById("contactName")?.value.trim() || "";
-        const email = document.getElementById("contactEmail")?.value.trim() || "";
-        const message = document.getElementById("contactMessage")?.value.trim() || "";
+        const nameInput = document.getElementById("contactName");
+        const emailInput = document.getElementById("contactEmail");
+        const messageInput = document.getElementById("contactMessage");
+
+        const name = nameInput?.value.trim() || "";
+        const email = emailInput?.value.trim() || "";
+        const message = messageInput?.value.trim() || "";
 
         if (!name || !email || !message) {
             form.reportValidity();
             return;
         }
 
-        const subject = encodeURIComponent(`Portfolio enquiry from ${name}`);
-        const body = encodeURIComponent(
-            `Hi Sneha,\n\n${message}\n\nFrom: ${name}\nEmail: ${email}`
+        if (!emailInput.checkValidity()) {
+            emailInput.reportValidity();
+            return;
+        }
+
+        const whatsappNumber = "916232448666";
+
+        const whatsappMessage = [
+            "Hi Sneha! I contacted you through your portfolio.",
+            "",
+            `Name: ${name}`,
+            `Email: ${email}`,
+            "",
+            "Message:",
+            message
+        ].join("\n");
+
+        const whatsappURL =
+            `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+
+        if (formStatus) {
+            formStatus.textContent =
+                "Opening WhatsApp with your message. Please review it and tap Send there.";
+        }
+
+        const whatsappWindow = window.open(
+            whatsappURL,
+            "_blank",
+            "noopener,noreferrer"
         );
 
-        window.location.href =
-            `mailto:snehaasingh.2409@gmail.com?subject=${subject}&body=${body}`;
+        if (!whatsappWindow) {
+            window.location.href = whatsappURL;
+        }
     });
 }
 
