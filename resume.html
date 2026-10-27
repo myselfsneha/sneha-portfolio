@@ -1,16 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Sneha's Resume</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f7f0df">
+    <meta name="description" content="View and download Sneha Singh's resume.">
+    <title>Resume | Sneha Singh</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>📄 Resume</h1>
-    <iframe src="SnehaSinghCV.pdf" width="100%" height="600px"></iframe>
-    <br/>
-    <a href="index.html" class="github-button">Back to Home</a>
-  </div>
+    <div class="animated-bg"></div>
+    <div class="cursor-glow"></div>
+
+    <main class="resume-page">
+        <header class="resume-header">
+            <a href="index.html" class="logo">sneha<span>.</span>dev</a>
+            <a href="index.html" class="secondary resume-back">← Back to portfolio</a>
+        </header>
+
+        <section class="resume-content">
+            <div class="resume-intro">
+                <span class="badge">A little about my journey</span>
+                <h1>My <span class="highlight">resume.</span></h1>
+                <p>Here's the professional side of my little corner of the internet.</p>
+            </div>
+
+            <div class="resume-toolbar">
+                <div class="resume-file">
+                    <span class="resume-file-icon">📄</span>
+                    <div>
+                        <h2>Sneha Singh</h2>
+                        <p>Resume · PDF document</p>
+                    </div>
+                </div>
+
+                <a href="SnehaSinghCV.pdf" class="primary resume-download" download>
+                    ↓ Download resume
+                </a>
+            </div>
+
+            <div class="resume-viewer">
+                <iframe
+                    src="SnehaSinghCV.pdf"
+                    title="Sneha Singh resume"
+                    width="100%"
+                    height="750"
+                    loading="lazy"
+                ></iframe>
+
+                <div class="resume-fallback">
+                    Can't see the PDF? <a href="SnehaSinghCV.pdf" target="_blank" rel="noopener noreferrer">Open it in a new tab ↗</a>
+                </div>
+            </div>
+
+            <footer class="resume-footer">
+                <span>Made with curiosity & a little chaos ✳</span>
+                <a href="index.html">Back to the good stuff ↑</a>
+            </footer>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
 </body>
 </html>
