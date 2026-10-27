@@ -1,278 +1,279 @@
-const glow = document.querySelector(".cursor-glow");
-
-if (glow && window.matchMedia("(pointer: fine)").matches) {
-    window.addEventListener("mousemove", (event) => {
-        glow.style.left = `${event.clientX}px`;
-        glow.style.top = `${event.clientY}px`;
-    }, { passive: true });
-}
-
-const filters = document.querySelectorAll(".filter-button");
-const projects = document.querySelectorAll(".project-card");
-const filterTimeouts = new WeakMap();
-
-filters.forEach((button) => {
-    button.addEventListener("click", () => {
-        filters.forEach((item) => {
-            const active = item === button;
-            item.classList.toggle("active", active);
-            item.setAttribute("aria-pressed", String(active));
-        });
-
-        const selectedFilter = button.dataset.filter;
-
-        projects.forEach((card) => {
-            const previousTimeout = filterTimeouts.get(card);
-
-            if (previousTimeout) {
-                window.clearTimeout(previousTimeout);
-                filterTimeouts.delete(card);
-            }
-
-            const matches =
-                selectedFilter === "all" ||
-                card.dataset.category === selectedFilter;
-
-            if (!matches) {
-                card.style.opacity = "0";
-
-                const timeout = window.setTimeout(() => {
-                    card.hidden = true;
-                    card.style.display = "none";
-                    filterTimeouts.delete(card);
-                }, 200);
-
-                filterTimeouts.set(card, timeout);
-            } else {
-                card.hidden = false;
-                card.style.display = "";
-                card.style.opacity = "0";
-
-                requestAnimationFrame(() => {
-                    card.style.opacity = "1";
-                });
-            }
-        });
-    });
-});
-
 const themeToggle = document.getElementById("themeToggle");
-
-function setTheme(theme) {
-    const isDark = theme === "dark";
-
-    document.body.classList.toggle("dark-theme", isDark);
-    document.documentElement.style.colorScheme = isDark ? "dark" : "light";
-
-    if (themeToggle) {
-        const icon = themeToggle.querySelector(".theme-icon");
-
-        if (icon) {
-            icon.textContent = isDark ? "☀️" : "☾";
-        } else {
-            themeToggle.textContent = isDark ? "☀️" : "🌙";
-        }
-
-        themeToggle.setAttribute(
-            "aria-label",
-            isDark ? "Switch to light theme" : "Switch to dark theme"
-        );
-        themeToggle.setAttribute("aria-pressed", String(isDark));
-    }
-
-    try {
-        localStorage.setItem("theme", theme);
-    } catch {}
-}
-
-let savedTheme = "light";
-
-try {
-    savedTheme = localStorage.getItem("theme") || "light";
-} catch {}
-
-setTheme(savedTheme === "dark" ? "dark" : "light");
-
-if (themeToggle) {
-    themeToggle.addEventListener("click", () => {
-        const isDark = document.body.classList.contains("dark-theme");
-        setTheme(isDark ? "light" : "dark");
-    });
-}
-
 const menuToggle = document.getElementById("menuToggle");
 const mainNav = document.getElementById("mainNav");
-
-if (menuToggle && mainNav) {
-    menuToggle.addEventListener("click", () => {
-        const isExpanded = menuToggle.getAttribute("aria-expanded") === "true";
-
-        menuToggle.setAttribute("aria-expanded", String(!isExpanded));
-        mainNav.classList.toggle("open", !isExpanded);
-        document.body.classList.toggle("menu-open", !isExpanded);
-    });
-
-    mainNav.querySelectorAll("a").forEach((link) => {
-        link.addEventListener("click", () => {
-            menuToggle.setAttribute("aria-expanded", "false");
-            mainNav.classList.remove("open");
-            document.body.classList.remove("menu-open");
-        });
-    });
-
-    document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape") {
-            menuToggle.setAttribute("aria-expanded", "false");
-            mainNav.classList.remove("open");
-            document.body.classList.remove("menu-open");
-        }
-    });
-}
-
-const sections = document.querySelectorAll("section[id]");
-const navLinks = document.querySelectorAll('.main-nav a[href^="#"]');
-
-function updateActiveNav() {
-    let currentSection = "";
-
-    sections.forEach((section) => {
-        if (section.getBoundingClientRect().top <= 160) {
-            currentSection = section.id;
-        }
-    });
-
-    navLinks.forEach((link) => {
-        const active = link.getAttribute("href") === `#${currentSection}`;
-
-        link.classList.toggle("active", active);
-
-        if (active) {
-            link.setAttribute("aria-current", "location");
-        } else {
-            link.removeAttribute("aria-current");
-        }
-    });
-}
-
-window.addEventListener("scroll", updateActiveNav, { passive: true });
-window.addEventListener("load", updateActiveNav);
-updateActiveNav();
-
-const typing = document.querySelector(".typing-terminal");
-
-const terminalTexts = [
-    "Open to Internships...",
-    "Full Stack Developer...",
-    "Data Analytics Enthusiast...",
-    "AI/ML Learner..."
-];
-
-if (
-    typing &&
-    terminalTexts.length &&
-    !window.matchMedia("(prefers-reduced-motion: reduce)").matches
-) {
-    let currentTextIndex = 0;
-    typing.textContent = terminalTexts[0];
-    typing.style.transition = "opacity 250ms ease";
-
-    window.setInterval(() => {
-        currentTextIndex = (currentTextIndex + 1) % terminalTexts.length;
-        typing.style.opacity = "0";
-
-        window.setTimeout(() => {
-            typing.textContent = terminalTexts[currentTextIndex];
-            typing.style.opacity = "1";
-        }, 250);
-    }, 2500);
-}
-
-const form = document.getElementById("contactForm");
+const contactForm = document.getElementById("contactForm");
 const formStatus = document.getElementById("formStatus");
-
-if (form) {
-    form.addEventListener("submit", (event) => {
-        event.preventDefault();
-
-        const nameInput = document.getElementById("contactName");
-        const emailInput = document.getElementById("contactEmail");
-        const messageInput = document.getElementById("contactMessage");
-
-        const name = nameInput?.value.trim() || "";
-        const email = emailInput?.value.trim() || "";
-        const message = messageInput?.value.trim() || "";
-
-        if (!name || !email || !message) {
-            form.reportValidity();
-            return;
-        }
-
-        if (!emailInput.checkValidity()) {
-            emailInput.reportValidity();
-            return;
-        }
-
-        const whatsappNumber = "916232448666";
-
-        const whatsappMessage = [
-            "Hi Sneha! I contacted you through your portfolio.",
-            "",
-            `Name: ${name}`,
-            `Email: ${email}`,
-            "",
-            "Message:",
-            message
-        ].join("\n");
-
-        const whatsappURL =
-            `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
-
-        if (formStatus) {
-            formStatus.textContent =
-                "Opening WhatsApp with your message. Please review it and tap Send there.";
-        }
-
-        const whatsappWindow = window.open(
-            whatsappURL,
-            "_blank",
-            "noopener,noreferrer"
-        );
-
-        if (!whatsappWindow) {
-            window.location.href = whatsappURL;
-        }
-    });
-}
-
 const currentYear = document.getElementById("currentYear");
 
-if (currentYear) {
-    currentYear.textContent = new Date().getFullYear();
-}
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const whatsappNumber = "916232448666";
 
-const revealCards = document.querySelectorAll(
-    ".glass-card, .project-card, .skill-card"
-);
+function setTheme(theme) {
+  document.documentElement.dataset.theme = theme;
 
-if (
-    "IntersectionObserver" in window &&
-    !window.matchMedia("(prefers-reduced-motion: reduce)").matches
-) {
-    const observer = new IntersectionObserver(
-        (entries, activeObserver) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("show");
-                    activeObserver.unobserve(entry.target);
-                }
-            });
-        },
-        {
-            threshold: 0.15
-        }
+  if (themeToggle) {
+    const icon = themeToggle.querySelector(".theme-icon");
+
+    if (icon) {
+      icon.textContent = theme === "dark" ? "☀" : "☾";
+    }
+
+    themeToggle.setAttribute(
+      "aria-label",
+      theme === "dark" ? "Switch to light theme" : "Switch to dark theme"
     );
 
-    revealCards.forEach((card) => observer.observe(card));
-} else {
-    revealCards.forEach((card) => card.classList.add("show"));
+    themeToggle.setAttribute("aria-pressed", String(theme === "dark"));
+  }
 }
+
+function getInitialTheme() {
+  const savedTheme = document.documentElement.dataset.theme;
+
+  if (savedTheme === "light" || savedTheme === "dark") {
+    return savedTheme;
+  }
+
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+}
+
+setTheme(getInitialTheme());
+
+themeToggle?.addEventListener("click", () => {
+  const currentTheme = document.documentElement.dataset.theme || "light";
+  setTheme(currentTheme === "dark" ? "light" : "dark");
+});
+
+function closeMenu() {
+  if (!menuToggle || !mainNav) return;
+
+  mainNav.classList.remove("open");
+  menuToggle.setAttribute("aria-expanded", "false");
+  menuToggle.setAttribute("aria-label", "Open navigation menu");
+}
+
+menuToggle?.addEventListener("click", () => {
+  if (!mainNav) return;
+
+  const isOpen = mainNav.classList.toggle("open");
+
+  menuToggle.setAttribute("aria-expanded", String(isOpen));
+  menuToggle.setAttribute(
+    "aria-label",
+    isOpen ? "Close navigation menu" : "Open navigation menu"
+  );
+});
+
+mainNav?.querySelectorAll('a[href^="#"]').forEach((link) => {
+  link.addEventListener("click", closeMenu);
+});
+
+document.addEventListener("click", (event) => {
+  if (!mainNav || !menuToggle || !mainNav.classList.contains("open")) return;
+
+  if (!mainNav.contains(event.target) && !menuToggle.contains(event.target)) {
+    closeMenu();
+  }
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && mainNav?.classList.contains("open")) {
+    closeMenu();
+    menuToggle?.focus();
+  }
+});
+
+window.addEventListener("resize", () => {
+  if (window.innerWidth > 900) {
+    closeMenu();
+  }
+});
+
+const filterButtons = document.querySelectorAll(".filter-button");
+const projectCards = document.querySelectorAll(".project-card");
+
+filterButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const selectedFilter = button.dataset.filter || "all";
+
+    filterButtons.forEach((filterButton) => {
+      const isActive = filterButton === button;
+
+      filterButton.classList.toggle("active", isActive);
+      filterButton.setAttribute("aria-pressed", String(isActive));
+    });
+
+    projectCards.forEach((card) => {
+      const category = card.dataset.category || "";
+      const shouldShow =
+        selectedFilter === "all" || category === selectedFilter;
+
+      card.hidden = !shouldShow;
+    });
+  });
+});
+
+const navLinks = document.querySelectorAll('.main-nav a[href^="#"]');
+const sections = [...navLinks]
+  .map((link) => document.querySelector(link.getAttribute("href")))
+  .filter(Boolean);
+
+if ("IntersectionObserver" in window && sections.length) {
+  const sectionObserver = new IntersectionObserver(
+    (entries) => {
+      const visibleSections = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+      if (!visibleSections.length) return;
+
+      const currentId = visibleSections[0].target.id;
+
+      navLinks.forEach((link) => {
+        if (link.getAttribute("href") === `#${currentId}`) {
+          link.setAttribute("aria-current", "location");
+        } else {
+          link.removeAttribute("aria-current");
+        }
+      });
+    },
+    {
+      rootMargin: "-20% 0px -55% 0px",
+      threshold: [0, 0.2, 0.5, 0.8]
+    }
+  );
+
+  sections.forEach((section) => sectionObserver.observe(section));
+}
+
+const revealElements = document.querySelectorAll(
+  ".glass-card, .project-card, .skill-card, .timeline-item"
+);
+
+if ("IntersectionObserver" in window && !prefersReducedMotion.matches) {
+  const revealObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      });
+    },
+    {
+      threshold: 0.12,
+      rootMargin: "0px 0px -30px 0px"
+    }
+  );
+
+  revealElements.forEach((element) => {
+    element.classList.add("reveal-ready");
+    revealObserver.observe(element);
+  });
+} else {
+  revealElements.forEach((element) => {
+    element.classList.add("is-visible");
+  });
+}
+
+const terminalLines = [
+  "const dream = true;",
+  "while (curious) {",
+  "keepBuilding();",
+  "}",
+  "learning = 'always';",
+  "shipSmallThings();"
+];
+
+const terminal = document.querySelector(".art-card-code");
+
+if (terminal && !prefersReducedMotion.matches) {
+  const codeLines = terminal.querySelectorAll(".code-line");
+  let currentLine = 0;
+
+  if (codeLines.length) {
+    window.setInterval(() => {
+      currentLine = (currentLine + 1) % terminalLines.length;
+
+      const nextLine = terminalLines[currentLine];
+      const targetLine = codeLines[currentLine % codeLines.length];
+
+      if (targetLine) {
+        targetLine.textContent = nextLine;
+      }
+    }, 3200);
+  }
+}
+
+contactForm?.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  if (!contactForm.reportValidity()) return;
+
+  const name = document.getElementById("contactName")?.value.trim() || "";
+  const email = document.getElementById("contactEmail")?.value.trim() || "";
+  const message =
+    document.getElementById("contactMessage")?.value.trim() || "";
+
+  if (!name || !email || !message) {
+    if (formStatus) {
+      formStatus.textContent = "Please fill in all three fields first.";
+    }
+    return;
+  }
+
+  const whatsappMessage = [
+    "Hi Sneha! 👋",
+    "",
+    `Name: ${name}`,
+    `Email: ${email}`,
+    "",
+    "Message:",
+    message
+  ].join("\n");
+
+  const whatsappUrl =
+    `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+
+  if (formStatus) {
+    formStatus.textContent =
+      "Opening WhatsApp with your message. Review it there and tap Send.";
+  }
+
+  const whatsappWindow = window.open(whatsappUrl, "_blank");
+
+  if (whatsappWindow) {
+    whatsappWindow.opener = null;
+  } else {
+    window.location.href = whatsappUrl;
+  }
+});
+
+if (currentYear) {
+  currentYear.textContent = String(new Date().getFullYear());
+}
+
+document.querySelectorAll('a[href^="#"]').forEach((link) => {
+  link.addEventListener("click", (event) => {
+    const href = link.getAttribute("href");
+
+    if (!href || href === "#") return;
+
+    const target = document.querySelector(href);
+
+    if (!target) return;
+
+    event.preventDefault();
+
+    target.scrollIntoView({
+      behavior: prefersReducedMotion.matches ? "auto" : "smooth",
+      block: "start"
+    });
+
+    if (window.location.hash !== href) {
+      history.replaceState(null, "", href);
+    }
+  });
+});
