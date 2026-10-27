@@ -1,227 +1,182 @@
-// ======================
-// Cursor Glow
-// ======================
-
 const glow = document.querySelector(".cursor-glow");
 
-if (glow) {
-  window.addEventListener("mousemove", (e) => {
-    glow.style.left = `${e.clientX}px`;
-    glow.style.top = `${e.clientY}px`;
-  });
+if (glow && window.matchMedia("(pointer: fine)").matches) {
+    window.addEventListener("mousemove", (event) => {
+        glow.style.left = `${event.clientX}px`;
+        glow.style.top = `${event.clientY}px`;
+    });
 }
-
-// ======================
-// Project Filtering
-// ======================
 
 const filters = document.querySelectorAll(".filter");
 const projects = document.querySelectorAll(".project-card");
 
 filters.forEach((button) => {
-  button.addEventListener("click", () => {
+    button.addEventListener("click", () => {
+        filters.forEach((item) => item.classList.remove("active"));
+        button.classList.add("active");
 
-    filters.forEach((btn) => btn.classList.remove("active"));
-    button.classList.add("active");
+        const selectedFilter = button.dataset.filter;
 
-    const filter = button.dataset.filter;
+        projects.forEach((card) => {
+            const matches =
+                selectedFilter === "all" ||
+                card.classList.contains(selectedFilter);
 
-    projects.forEach((card) => {
+            card.style.opacity = "0";
 
-      card.style.opacity = "0";
+            window.setTimeout(() => {
+                card.hidden = !matches;
+                card.style.display = matches ? "" : "none";
 
-      setTimeout(() => {
-
-        if (filter === "all" || card.classList.contains(filter)) {
-
-          card.style.display = "block";
-
-          setTimeout(() => {
-            card.style.opacity = "1";
-          }, 100);
-
-        } else {
-
-          card.style.display = "none";
-
-        }
-
-      }, 200);
-
+                if (matches) {
+                    requestAnimationFrame(() => {
+                        card.style.opacity = "1";
+                    });
+                }
+            }, 200);
+        });
     });
-
-  });
 });
-
-// ======================
-// Theme Toggle
-// ======================
 
 const themeToggle = document.getElementById("themeToggle");
 
-const savedTheme = localStorage.getItem("theme");
+function setTheme(theme) {
+    const isDark = theme === "dark";
 
-function enableLightMode() {
+    document.body.classList.toggle("dark-theme", isDark);
+    document.documentElement.style.colorScheme = isDark ? "dark" : "light";
 
-  document.documentElement.style.setProperty("--bg", "#f5f5f5");
-  document.documentElement.style.setProperty("--text", "#111111");
-
-  themeToggle.textContent = "☀️";
-
-}
-
-function enableDarkMode() {
-
-  document.documentElement.style.setProperty("--bg", "#0f0f14");
-  document.documentElement.style.setProperty("--text", "#ffffff");
-
-  themeToggle.textContent = "🌙";
-
-}
-
-if (savedTheme === "light") {
-
-  enableLightMode();
-
-} else {
-
-  enableDarkMode();
-
-}
-
-themeToggle.addEventListener("click", () => {
-
-  if (localStorage.getItem("theme") === "light") {
-
-    enableDarkMode();
-    localStorage.setItem("theme", "dark");
-
-  } else {
-
-    enableLightMode();
-    localStorage.setItem("theme", "light");
-
-  }
-
-});
-
-// ======================
-// Active Navbar
-// ======================
-
-const sections = document.querySelectorAll("section");
-const navLinks = document.querySelectorAll(".navbar nav a");
-
-window.addEventListener("scroll", () => {
-
-  let current = "";
-
-  sections.forEach((section) => {
-
-    const sectionTop = section.offsetTop - 150;
-
-    if (window.scrollY >= sectionTop) {
-      current = section.id;
+    if (themeToggle) {
+        themeToggle.textContent = isDark ? "☀️" : "🌙";
+        themeToggle.setAttribute(
+            "aria-label",
+            isDark ? "Switch to light theme" : "Switch to dark theme"
+        );
+        themeToggle.setAttribute("aria-pressed", String(isDark));
     }
 
-  });
-
-  navLinks.forEach((link) => {
-
-    link.classList.remove("active");
-
-    if (link.getAttribute("href") === `#${current}`) {
-      link.classList.add("active");
+    try {
+        localStorage.setItem("theme", theme);
+    } catch {
+        return;
     }
+}
 
-  });
+let savedTheme = "light";
 
-});
+try {
+    savedTheme = localStorage.getItem("theme") || "light";
+} catch {
+    savedTheme = "light";
+}
 
-// ======================
-// Terminal Typing
-// ======================
+setTheme(savedTheme === "dark" ? "dark" : "light");
+
+if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+        const isDark = document.body.classList.contains("dark-theme");
+        setTheme(isDark ? "light" : "dark");
+    });
+}
+
+const sections = document.querySelectorAll("section[id]");
+const navLinks = document.querySelectorAll('.navbar nav a[href^="#"]');
+
+function updateActiveNav() {
+    let currentSection = "";
+
+    sections.forEach((section) => {
+        if (section.getBoundingClientRect().top <= 160) {
+            currentSection = section.id;
+        }
+    });
+
+    navLinks.forEach((link) => {
+        const active = link.getAttribute("href") === `#${currentSection}`;
+
+        link.classList.toggle("active", active);
+
+        if (active) {
+            link.setAttribute("aria-current", "location");
+        } else {
+            link.removeAttribute("aria-current");
+        }
+    });
+}
+
+window.addEventListener("scroll", updateActiveNav, { passive: true });
+window.addEventListener("load", updateActiveNav);
+updateActiveNav();
 
 const typing = document.querySelector(".typing-terminal");
 
-const texts = [
-  "Open to Internships...",
-  "Full Stack Developer...",
-  "Data Analytics Enthusiast...",
-  "AI/ML Learner..."
+const terminalTexts = [
+    "Open to Internships...",
+    "Full Stack Developer...",
+    "Data Analytics Enthusiast...",
+    "AI/ML Learner..."
 ];
 
-let currentText = 0;
+if (typing && terminalTexts.length) {
+    let currentTextIndex = 0;
+    let typingInterval;
 
-if (typing) {
+    typing.textContent = terminalTexts[0];
+    typing.style.transition = "opacity 250ms ease";
 
-  typing.textContent = texts[0];
+    function startTerminalTyping() {
+        if (typingInterval) {
+            window.clearInterval(typingInterval);
+        }
 
-  setInterval(() => {
+        typingInterval = window.setInterval(() => {
+            currentTextIndex = (currentTextIndex + 1) % terminalTexts.length;
+            typing.style.opacity = "0";
 
-    currentText = (currentText + 1) % texts.length;
+            window.setTimeout(() => {
+                typing.textContent = terminalTexts[currentTextIndex];
+                typing.style.opacity = "1";
+            }, 250);
+        }, 2500);
+    }
 
-    typing.style.opacity = "0";
-
-    setTimeout(() => {
-
-      typing.textContent = texts[currentText];
-      typing.style.opacity = "1";
-
-    }, 250);
-
-  }, 2500);
-
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        startTerminalTyping();
+    }
 }
-
-// ======================
-// Contact Form
-// ======================
 
 const form = document.querySelector(".contact-form");
 
 if (form) {
+    form.addEventListener("submit", (event) => {
+        event.preventDefault();
 
-  form.addEventListener("submit", (e) => {
+        alert("Thank you! I'll get back to you soon.");
 
-    e.preventDefault();
-
-    alert("Thank you! I'll get back to you soon.");
-
-    form.reset();
-
-  });
-
+        form.reset();
+    });
 }
 
-// ======================
-// Scroll Reveal
-// ======================
-
 const revealCards = document.querySelectorAll(
-  ".glass-card, .project-card, .skill-card"
+    ".glass-card, .project-card, .skill-card"
 );
 
-const observer = new IntersectionObserver(
+if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+        (entries, activeObserver) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("show");
+                    activeObserver.unobserve(entry.target);
+                }
+            });
+        },
+        {
+            threshold: 0.15
+        }
+    );
 
-  (entries) => {
-
-    entries.forEach((entry) => {
-
-      if (entry.isIntersecting) {
-
-        entry.target.classList.add("show");
-
-      }
-
-    });
-
-  },
-
-  {
-    threshold: 0.2
-  }
-
-);
-
-revealCards.forEach((card) => observer.observe(card));
+    revealCards.forEach((card) => observer.observe(card));
+} else {
+    revealCards.forEach((card) => card.classList.add("show"));
+}
