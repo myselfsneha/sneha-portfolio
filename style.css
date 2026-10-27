@@ -1,72 +1,43 @@
-
-/* =========================================================
-   SNEHA'S DEVELOPER SCRAPBOOK
-   Retro internet × chaotic scrapbook × developer energy
-   Complete stylesheet replacement
-========================================================= */
-
-/* ======================
-   01. DESIGN TOKENS
-====================== */
-
 :root {
     --primary: #6047ff;
     --secondary: #ff5ca8;
     --accent: #c6ff4d;
     --cyan: #67e8f9;
     --orange: #ff9854;
-
     --bg: #f7f0df;
     --bg-secondary: #fffaf0;
     --card: #fffdf7;
     --card-dark: #171820;
-
     --text: #202027;
     --text-light: #65616a;
     --text-inverse: #fffaf0;
-
     --border: #24232a;
     --border-soft: rgba(36, 35, 42, 0.18);
-
     --success: #27834a;
     --danger: #ff5f57;
-
     --shadow: 5px 5px 0 var(--border);
     --shadow-hover: 8px 8px 0 var(--border);
-
     --radius-sm: 8px;
     --radius-md: 16px;
     --radius-lg: 24px;
-
     --font-body: "Inter", sans-serif;
     --font-code: "JetBrains Mono", "Fira Code", monospace;
-
     --transition: 220ms ease;
 }
-
-/* Optional dark theme.
-   Activate by adding class="dark-theme" to body. */
 
 body.dark-theme {
     --bg: #15151b;
     --bg-secondary: #1e1e27;
     --card: #23232d;
     --card-dark: #101016;
-
     --text: #f7f0df;
     --text-light: #c0bbc8;
     --text-inverse: #f7f0df;
-
     --border: #e7dfcf;
     --border-soft: rgba(247, 240, 223, 0.2);
-
     --shadow: 5px 5px 0 rgba(96, 71, 255, 0.75);
     --shadow-hover: 8px 8px 0 rgba(255, 92, 168, 0.8);
 }
-
-/* ======================
-   02. RESET & BASE
-====================== */
 
 * {
     margin: 0;
@@ -86,19 +57,17 @@ body {
     color: var(--text);
     line-height: 1.6;
     overflow-x: hidden;
-    transition:
-        background-color 250ms ease,
-        color 250ms ease;
+    transition: background-color 250ms ease, color 250ms ease;
 }
 
-body::selection {
-    background: var(--accent);
-    color: #171820;
+::selection {
+    background: var(--primary);
+    color: #ffffff;
 }
 
 img {
-    max-width: 100%;
     display: block;
+    max-width: 100%;
 }
 
 a {
@@ -130,53 +99,24 @@ section {
     scroll-margin-top: 90px;
 }
 
-::selection {
-    background: var(--primary);
-    color: #ffffff;
-}
-
-/* ======================
-   03. BACKGROUND
-====================== */
-
 .animated-bg {
     position: fixed;
     inset: 0;
     z-index: -10;
     pointer-events: none;
-
     background:
-        radial-gradient(
-            circle at 12% 15%,
-            rgba(255, 92, 168, 0.12),
-            transparent 26%
-        ),
-        radial-gradient(
-            circle at 85% 75%,
-            rgba(96, 71, 255, 0.12),
-            transparent 30%
-        ),
-        linear-gradient(
-            135deg,
-            var(--bg),
-            var(--bg-secondary)
-        );
+        radial-gradient(circle at 12% 15%, rgba(255, 92, 168, 0.12), transparent 26%),
+        radial-gradient(circle at 85% 75%, rgba(96, 71, 255, 0.12), transparent 30%),
+        linear-gradient(135deg, var(--bg), var(--bg-secondary));
 }
-
-/* Tiny retro-print texture */
 
 .animated-bg::after {
     content: "";
     position: absolute;
     inset: 0;
-    opacity: 0.15;
+    opacity: 0.12;
     pointer-events: none;
-
-    background-image: radial-gradient(
-        var(--text) 0.65px,
-        transparent 0.65px
-    );
-
+    background-image: radial-gradient(var(--text) 0.65px, transparent 0.65px);
     background-size: 7px 7px;
 }
 
@@ -185,30 +125,17 @@ section {
     width: 300px;
     height: 300px;
     border-radius: 50%;
-
-    background: radial-gradient(
-        circle,
-        rgba(255, 92, 168, 0.13),
-        rgba(96, 71, 255, 0.08) 40%,
-        transparent 72%
-    );
-
+    background: radial-gradient(circle, rgba(255, 92, 168, 0.13), rgba(96, 71, 255, 0.08) 40%, transparent 72%);
     pointer-events: none;
     transform: translate(-50%, -50%);
     z-index: -1;
 }
 
-/* ======================
-   04. SECTION TITLES
-====================== */
-
 .section-title {
     display: table;
     position: relative;
-
     max-width: 100%;
     margin: 0 auto 58px;
-
     font-size: clamp(2.2rem, 5vw, 3.7rem);
     font-weight: 900;
     line-height: 1.1;
@@ -219,16 +146,12 @@ section {
 .section-title::after {
     content: "";
     display: block;
-
     width: 72px;
     height: 9px;
-
     margin: 15px auto 0;
-
     background: var(--accent);
     border: 2px solid var(--border);
     border-radius: 2px;
-
     transform: rotate(-2deg);
     box-shadow: 3px 3px 0 var(--border);
 }
@@ -238,43 +161,30 @@ section {
     position: absolute;
     top: -15px;
     left: -35px;
-
     color: var(--secondary);
     font-family: var(--font-code);
     font-size: 0.85rem;
     letter-spacing: 0;
 }
 
-/* ======================
-   05. NAVBAR
-====================== */
-
 .navbar {
     position: fixed;
     top: 18px;
     left: 50%;
     z-index: 1000;
-
     width: min(92%, 1250px);
     min-height: 68px;
     padding: 13px 22px;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 20px;
-
     transform: translateX(-50%);
-
     background: var(--card);
     border: 2px solid var(--border);
     border-radius: var(--radius-md);
     box-shadow: 4px 4px 0 var(--border);
-
-    transition:
-        background-color var(--transition),
-        box-shadow var(--transition),
-        top var(--transition);
+    transition: background-color var(--transition), box-shadow var(--transition), top var(--transition);
 }
 
 .navbar:hover {
@@ -283,7 +193,6 @@ section {
 
 .logo {
     flex-shrink: 0;
-
     font-family: var(--font-code);
     font-size: 1.05rem;
     font-weight: 900;
@@ -312,18 +221,12 @@ section {
     position: relative;
     margin: 0;
     padding: 9px 11px;
-
     color: var(--text);
     text-decoration: none;
     font-size: 0.88rem;
     font-weight: 700;
-
     border-radius: 7px;
-
-    transition:
-        color var(--transition),
-        background-color var(--transition),
-        transform var(--transition);
+    transition: color var(--transition), background-color var(--transition), transform var(--transition);
 }
 
 .navbar nav a:hover {
@@ -343,23 +246,16 @@ section {
 
 #themeToggle {
     flex-shrink: 0;
-
     min-width: 40px;
     min-height: 40px;
     padding: 8px;
-
     background: var(--bg);
     color: var(--text);
-
     border: 2px solid var(--border);
     border-radius: 10px;
-
     cursor: pointer;
     font-size: 1.05rem;
-
-    transition:
-        transform var(--transition),
-        background-color var(--transition);
+    transition: transform var(--transition), background-color var(--transition);
 }
 
 #themeToggle:hover {
@@ -367,20 +263,14 @@ section {
     transform: rotate(-8deg) scale(1.06);
 }
 
-/* ======================
-   06. HERO SECTION
-====================== */
-
 .hero {
     min-height: 100vh;
     padding-top: 145px;
     padding-bottom: 90px;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 70px;
-
     position: relative;
     isolation: isolate;
 }
@@ -390,14 +280,11 @@ section {
     top: 14%;
     left: -12%;
     z-index: -1;
-
     width: 400px;
     height: 400px;
-
     background: var(--secondary);
     filter: blur(130px);
     opacity: 0.22;
-
     pointer-events: none;
 }
 
@@ -411,11 +298,9 @@ section {
 .hero-right {
     flex: 0.85;
     min-width: 0;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     position: relative;
     z-index: 2;
 }
@@ -424,39 +309,31 @@ section {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-
     margin-bottom: 25px;
     padding: 9px 15px;
-
     background: var(--accent);
     color: #202027;
-
     border: 2px solid var(--border);
     border-radius: 6px;
-
     font-family: var(--font-code);
     font-size: 0.78rem;
     font-weight: 800;
-
     transform: rotate(-2deg);
     box-shadow: 3px 3px 0 var(--border);
 }
 
 .hero h1 {
     max-width: 850px;
-
     font-size: clamp(3rem, 6.4vw, 6rem);
     font-weight: 900;
     line-height: 0.99;
     letter-spacing: -0.075em;
-
     overflow-wrap: anywhere;
 }
 
 .highlight {
     position: relative;
     display: inline-block;
-
     color: var(--primary);
     text-decoration: underline;
     text-decoration-color: var(--secondary);
@@ -466,7 +343,6 @@ section {
 
 .hero h2 {
     margin-top: 24px;
-
     font-size: clamp(1.15rem, 2.4vw, 1.7rem);
     line-height: 1.45;
     font-weight: 700;
@@ -475,22 +351,16 @@ section {
 .desc {
     max-width: 590px;
     margin-top: 23px;
-
     color: var(--text-light);
     font-size: 1rem;
     line-height: 1.9;
 }
-
-/* ======================
-   07. BUTTONS
-====================== */
 
 .buttons {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: 16px;
-
     margin-top: 32px;
 }
 
@@ -500,20 +370,13 @@ section {
     align-items: center;
     justify-content: center;
     gap: 9px;
-
     min-height: 49px;
     padding: 13px 23px;
-
     border: 2px solid var(--border);
     border-radius: 9px;
-
     text-decoration: none;
     font-weight: 800;
-
-    transition:
-        transform var(--transition),
-        box-shadow var(--transition),
-        background-color var(--transition);
+    transition: transform var(--transition), box-shadow var(--transition), background-color var(--transition);
 }
 
 .primary {
@@ -542,41 +405,28 @@ section {
     background: var(--accent);
 }
 
-/* ======================
-   08. SOCIAL LINKS
-====================== */
-
 .socials {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     gap: 12px;
-
     margin-top: 30px;
 }
 
 .socials a {
     width: 46px;
     height: 46px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     color: var(--text);
     background: var(--card);
-
     border: 2px solid var(--border);
     border-radius: 11px;
     box-shadow: 3px 3px 0 var(--border);
-
     text-decoration: none;
     font-size: 1.05rem;
-
-    transition:
-        transform var(--transition),
-        background-color var(--transition),
-        box-shadow var(--transition);
+    transition: transform var(--transition), background-color var(--transition), box-shadow var(--transition);
 }
 
 .socials a:hover {
@@ -585,44 +435,31 @@ section {
     box-shadow: 5px 5px 0 var(--border);
 }
 
-/* ======================
-   09. DEVELOPER TERMINAL
-====================== */
-
 .terminal {
     width: min(100%, 470px);
-
     overflow: hidden;
-
     background: var(--card-dark);
     color: #f6f0df;
-
     border: 2px solid var(--border);
     border-radius: 13px;
-
     box-shadow: 9px 9px 0 var(--primary);
-
     animation: terminalFloat 6s ease-in-out infinite;
 }
 
 .terminal-top {
     min-height: 46px;
     padding: 13px 16px;
-
     display: flex;
     align-items: center;
     gap: 8px;
-
     background: #292832;
     border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .terminal-top span {
     display: block;
-
     width: 11px;
     height: 11px;
-
     flex-shrink: 0;
     border-radius: 50%;
 }
@@ -642,7 +479,6 @@ section {
 .terminal-body {
     min-height: 220px;
     padding: 25px;
-
     font-family: var(--font-code);
     font-size: 0.88rem;
     line-height: 2;
@@ -661,11 +497,6 @@ section {
     color: #c6aaff;
 }
 
-.terminal-body::selection {
-    background: var(--secondary);
-    color: #171820;
-}
-
 @keyframes terminalFloat {
     0%,
     100% {
@@ -677,31 +508,18 @@ section {
     }
 }
 
-/* ======================
-   10. CARD SYSTEM
-====================== */
-
 .glass-card,
 .project-card,
 .skill-card {
     position: relative;
-
     padding: 26px;
-
     background: var(--card);
     color: var(--text);
-
     border: 2px solid var(--border);
     border-radius: var(--radius-md);
     box-shadow: var(--shadow);
-
     backdrop-filter: none;
-
-    transition:
-        transform 250ms ease,
-        box-shadow 250ms ease,
-        background-color 250ms ease,
-        border-color 250ms ease;
+    transition: transform 250ms ease, box-shadow 250ms ease, background-color 250ms ease, border-color 250ms ease;
 }
 
 .glass-card:hover,
@@ -711,8 +529,6 @@ section {
     box-shadow: var(--shadow-hover);
     border-color: var(--primary);
 }
-
-/* Slightly different card rotations for a scrapbook feel */
 
 .project-card:nth-child(3n + 1) {
     --card-tilt: -0.5deg;
@@ -727,16 +543,11 @@ section {
 }
 
 .project-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
     transform: rotate(var(--card-tilt, 0deg));
 }
-
-.project-card:hover {
-    transform: translate(-3px, -4px) rotate(0deg);
-}
-
-/* ======================
-   11. ABOUT
-====================== */
 
 .about-info {
     display: grid;
@@ -758,18 +569,13 @@ section {
 
 .tags span {
     display: inline-block;
-
     padding: 8px 14px;
-
     background: var(--accent);
     color: #202027;
-
     border: 1.5px solid var(--border);
     border-radius: 6px;
-
     font-size: 0.85rem;
     font-weight: 800;
-
     transform: rotate(-1deg);
     transition: transform var(--transition);
 }
@@ -784,10 +590,6 @@ section {
     transform: translateY(-3px) rotate(0deg);
 }
 
-/* ======================
-   12. TIMELINE
-====================== */
-
 .timeline {
     position: relative;
     display: grid;
@@ -797,20 +599,16 @@ section {
 .timeline-item {
     position: relative;
     overflow: hidden;
-
     padding: 27px 28px 27px 35px;
 }
 
 .timeline-item::before {
     content: "";
-
     position: absolute;
     top: 0;
     left: 0;
-
     width: 7px;
     height: 100%;
-
     background: var(--secondary);
 }
 
@@ -823,16 +621,11 @@ section {
 .timeline-item span {
     display: inline-block;
     margin: 12px 0;
-
     color: var(--primary);
     font-family: var(--font-code);
     font-size: 0.85rem;
     font-weight: 800;
 }
-
-/* ======================
-   13. PROJECT FILTERS
-====================== */
 
 .filter-buttons {
     display: flex;
@@ -840,30 +633,20 @@ section {
     align-items: center;
     flex-wrap: wrap;
     gap: 12px;
-
     margin-bottom: 45px;
 }
 
 .filter {
     padding: 10px 17px;
-
     background: var(--card);
     color: var(--text);
-
     border: 2px solid var(--border);
     border-radius: 8px;
-
     font-size: 0.88rem;
     font-weight: 800;
-
     cursor: pointer;
-
     box-shadow: 3px 3px 0 var(--border);
-
-    transition:
-        transform var(--transition),
-        background-color var(--transition),
-        color var(--transition);
+    transition: transform var(--transition), background-color var(--transition), color var(--transition);
 }
 
 .filter:hover {
@@ -879,29 +662,15 @@ section {
     box-shadow: 1px 1px 0 var(--border);
 }
 
-/* ======================
-   14. PROJECTS
-====================== */
-
 .project-grid {
     display: grid;
-    grid-template-columns: repeat(
-        auto-fit,
-        minmax(min(100%, 290px), 1fr)
-    );
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr));
     align-items: stretch;
     gap: 30px;
 }
 
-.project-card {
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-}
-
 .project-card h3 {
     margin-bottom: 13px;
-
     font-size: 1.3rem;
     font-weight: 900;
     line-height: 1.35;
@@ -916,18 +685,13 @@ section {
 
 .project-card > span {
     align-self: flex-start;
-
     display: inline-block;
     margin: 18px 0;
-
     padding: 6px 10px;
-
     background: var(--accent);
     color: #202027;
-
     border: 1px solid var(--border);
     border-radius: 5px;
-
     font-family: var(--font-code);
     font-size: 0.76rem;
     font-weight: 800;
@@ -937,7 +701,6 @@ section {
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
-
     margin-top: auto;
     padding-top: 22px;
 }
@@ -946,20 +709,13 @@ section {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-
     padding: 10px 14px;
-
     border: 2px solid var(--border);
     border-radius: 7px;
-
     text-decoration: none;
     font-size: 0.86rem;
     font-weight: 800;
-
-    transition:
-        transform var(--transition),
-        background-color var(--transition),
-        box-shadow var(--transition);
+    transition: transform var(--transition), background-color var(--transition), box-shadow var(--transition);
 }
 
 .github-btn {
@@ -989,33 +745,19 @@ section {
     background: var(--secondary);
 }
 
-/* Supports existing JavaScript project filters */
-
 .project-card.hidden,
 .project-card[hidden] {
     display: none !important;
 }
 
-/* ======================
-   15. SKILLS
-====================== */
-
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(
-        auto-fit,
-        minmax(min(100%, 230px), 1fr)
-    );
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
     gap: 25px;
-}
-
-.skill-card {
-    min-width: 0;
 }
 
 .skill-card h3 {
     margin-bottom: 13px;
-
     color: var(--primary);
     font-size: 1.15rem;
     font-weight: 900;
@@ -1034,16 +776,9 @@ section {
     border-top: 6px solid var(--accent);
 }
 
-/* ======================
-   16. CONTACT
-====================== */
-
 .contact-container {
     display: grid;
-    grid-template-columns: repeat(
-        auto-fit,
-        minmax(min(100%, 300px), 1fr)
-    );
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
     align-items: start;
     gap: 30px;
 }
@@ -1053,7 +788,6 @@ section {
     align-items: center;
     flex-wrap: wrap;
     gap: 10px;
-
     margin: 22px 0;
     color: var(--text-light);
 }
@@ -1062,10 +796,8 @@ section {
     width: 10px;
     height: 10px;
     flex-shrink: 0;
-
     background: var(--success);
     border-radius: 50%;
-
     box-shadow: 0 0 0 4px rgba(39, 131, 74, 0.13);
 }
 
@@ -1079,25 +811,16 @@ section {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-
     padding: 11px 15px;
-
     background: var(--card);
     color: var(--text);
-
     border: 2px solid var(--border);
     border-radius: 8px;
-
     text-decoration: none;
     font-size: 0.9rem;
     font-weight: 800;
-
     box-shadow: 3px 3px 0 var(--border);
-
-    transition:
-        transform var(--transition),
-        background-color var(--transition),
-        box-shadow var(--transition);
+    transition: transform var(--transition), background-color var(--transition), box-shadow var(--transition);
 }
 
 .contact-links a:hover {
@@ -1105,10 +828,6 @@ section {
     transform: translate(-2px, -2px);
     box-shadow: 5px 5px 0 var(--border);
 }
-
-/* ======================
-   17. CONTACT FORM
-====================== */
 
 .contact-form {
     display: flex;
@@ -1120,20 +839,13 @@ section {
 .contact-form textarea {
     width: 100%;
     min-width: 0;
-
     padding: 14px 16px;
-
     background: var(--bg-secondary);
     color: var(--text);
-
     border: 2px solid var(--border);
     border-radius: 9px;
-
     font-size: 0.95rem;
-
-    transition:
-        border-color var(--transition),
-        box-shadow var(--transition);
+    transition: border-color var(--transition), box-shadow var(--transition);
 }
 
 .contact-form input::placeholder,
@@ -1157,22 +869,14 @@ section {
 .contact-form button {
     min-height: 49px;
     padding: 14px 20px;
-
     background: var(--primary);
     color: #ffffff;
-
     border: 2px solid var(--border);
     border-radius: 9px;
-
     box-shadow: 4px 4px 0 var(--border);
-
     font-weight: 900;
     cursor: pointer;
-
-    transition:
-        transform var(--transition),
-        box-shadow var(--transition),
-        background-color var(--transition);
+    transition: transform var(--transition), box-shadow var(--transition), background-color var(--transition);
 }
 
 .contact-form button:hover {
@@ -1181,19 +885,12 @@ section {
     box-shadow: 6px 6px 0 var(--border);
 }
 
-/* ======================
-   18. FOOTER
-====================== */
-
 .footer {
     margin-top: 55px;
     padding: 35px 10%;
-
     background: var(--card);
     color: var(--text-light);
-
     border-top: 2px solid var(--border);
-
     text-align: center;
     line-height: 1.8;
 }
@@ -1208,10 +905,6 @@ section {
 .footer a:hover {
     color: var(--secondary);
 }
-
-/* ======================
-   19. SCROLLBAR
-====================== */
 
 ::-webkit-scrollbar {
     width: 12px;
@@ -1232,12 +925,6 @@ section {
     background: var(--secondary);
 }
 
-/* ======================
-   20. SCROLL REVEAL
-====================== */
-
-/* Cards remain visible even if JavaScript is disabled. */
-
 .glass-card,
 .project-card,
 .skill-card {
@@ -1245,28 +932,20 @@ section {
     transform: translateY(0);
 }
 
-/* Compatible with scripts that add .show on scroll. */
-
 .glass-card.show,
-.project-card.show,
 .skill-card.show {
     opacity: 1;
     transform: translateY(0);
 }
 
-/* Keep project card rotation when it is visible. */
-
 .project-card.show {
+    opacity: 1;
     transform: rotate(var(--card-tilt, 0deg));
 }
 
 .project-card.show:hover {
     transform: translate(-3px, -4px) rotate(0deg);
 }
-
-/* ======================
-   21. SELECTION & DETAILS
-====================== */
 
 strong,
 b {
@@ -1289,10 +968,6 @@ hr {
     border-top: 2px dashed var(--border-soft);
     margin: 30px 0;
 }
-
-/* ======================
-   22. RESPONSIVE
-====================== */
 
 @media (max-width: 1100px) {
     section {
@@ -1354,10 +1029,6 @@ hr {
         justify-content: center;
     }
 
-    .hero-right {
-        margin-top: 0;
-    }
-
     .terminal {
         width: min(100%, 520px);
         text-align: left;
@@ -1382,10 +1053,7 @@ hr {
     }
 
     .project-grid {
-        grid-template-columns: repeat(
-            auto-fit,
-            minmax(min(100%, 270px), 1fr)
-        );
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr));
     }
 }
 
@@ -1489,10 +1157,7 @@ hr {
         gap: 23px;
     }
 
-    .project-card {
-        transform: none;
-    }
-
+    .project-card,
     .project-card.show {
         transform: none;
     }
@@ -1552,10 +1217,6 @@ hr {
         font-size: 0.72rem;
     }
 }
-
-/* ======================
-   23. ACCESSIBILITY
-====================== */
 
 @media (prefers-reduced-motion: reduce) {
     *,
