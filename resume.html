@@ -1,260 +1,301 @@
+
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <meta
     name="description"
-    content="Sneha Singh's resume — Computer Science postgraduate, software development, Python, web development, and data analytics."
-  >
-  <meta name="theme-color" content="#f6f1e9">
+    content="View and download Sneha Singh's resume."
+  />
 
-  <title>Resume | Sneha Singh</title>
+  <meta name="theme-color" content="#fff8f0">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap"
-    rel="stylesheet"
-  >
+  <title>Resume · Sneha Singh</title>
 
   <link rel="stylesheet" href="style.css">
 
   <style>
     .resume-page {
-      min-height: calc(100vh - 160px);
-      padding-block: 65px 90px;
+      min-height: 100vh;
+      padding: 32px clamp(18px, 5vw, 76px) 48px;
+      background: var(--color-background, #fff8f0);
+      color: var(--color-text, #302b35);
     }
 
-    .resume-header {
+    .resume-shell {
+      width: min(100%, 1120px);
+      margin: 0 auto;
+    }
+
+    .resume-topbar {
       display: flex;
-      align-items: flex-end;
+      align-items: center;
       justify-content: space-between;
-      gap: 24px;
-      margin-bottom: 35px;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 64px;
     }
 
-    .resume-header h1 {
-      margin: 0;
-      font-family: var(--font-display);
-      font-size: clamp(2.8rem, 6vw, 4.7rem);
-      font-weight: 500;
-      letter-spacing: -0.05em;
-      line-height: 1.1;
+    .resume-back {
+      color: inherit;
+      text-decoration: none;
+      font-weight: 600;
     }
 
-    .resume-header p {
-      max-width: 540px;
-      margin: 15px 0 0;
-      color: var(--text-soft);
+    .resume-back:hover {
+      text-decoration: underline;
+      text-underline-offset: 5px;
+    }
+
+    .resume-intro {
+      max-width: 720px;
+      margin-bottom: 32px;
+    }
+
+    .resume-eyebrow {
+      display: inline-block;
+      margin-bottom: 14px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.72;
+    }
+
+    .resume-intro h1 {
+      margin: 0 0 16px;
+      font-size: clamp(2.6rem, 7vw, 5.5rem);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+    }
+
+    .resume-intro p {
+      max-width: 560px;
+      line-height: 1.8;
+      opacity: 0.8;
     }
 
     .resume-actions {
       display: flex;
+      align-items: center;
       flex-wrap: wrap;
-      gap: 10px;
-      flex-shrink: 0;
+      gap: 12px;
+      margin: 28px 0 36px;
     }
 
-    .resume-frame {
+    .resume-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 12px 20px;
+      border: 1px solid currentColor;
+      border-radius: 999px;
+      color: inherit;
+      text-decoration: none;
+      font: inherit;
+      font-size: 0.94rem;
+      font-weight: 650;
+      transition:
+        transform 180ms ease,
+        background 180ms ease;
+    }
+
+    .resume-action:hover {
+      transform: translateY(-2px);
+    }
+
+    .resume-action-primary {
+      background: var(--color-accent, #d9c7f2);
+      border-color: transparent;
+      color: #302b35;
+    }
+
+    .resume-preview {
       overflow: hidden;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      background: var(--surface);
-      box-shadow: var(--shadow);
+      border: 1px solid rgba(48, 43, 53, 0.15);
+      border-radius: 18px;
+      background: #ffffff;
+      box-shadow: 0 16px 48px rgba(48, 43, 53, 0.08);
     }
 
-    .resume-frame iframe {
+    .resume-preview-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 16px 20px;
+      border-bottom: 1px solid rgba(48, 43, 53, 0.12);
+      color: #302b35;
+      font-size: 0.9rem;
+    }
+
+    .resume-preview-heading p {
+      margin: 0;
+    }
+
+    .resume-pdf {
       display: block;
       width: 100%;
-      height: min(1100px, 110vh);
-      min-height: 650px;
+      height: min(78vh, 1000px);
+      min-height: 500px;
       border: 0;
-      background: white;
+      background: #f5f1f7;
     }
 
     .resume-fallback {
-      padding: 28px;
-      color: var(--text-soft);
+      padding: 24px;
       text-align: center;
+      line-height: 1.7;
+      color: #302b35;
     }
 
-    .resume-fallback a {
-      color: var(--accent);
-      font-weight: 700;
-      text-decoration: underline;
+    .resume-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+      font-size: 0.88rem;
+      opacity: 0.75;
     }
 
-    .resume-note {
-      margin-top: 22px;
-      color: var(--muted);
-      font-size: 0.85rem;
-      text-align: center;
+    .resume-footer a {
+      color: inherit;
     }
 
-    @media (max-width: 700px) {
+    @media (max-width: 600px) {
       .resume-page {
-        padding-block: 45px 65px;
+        padding-top: 22px;
       }
 
-      .resume-header {
-        align-items: flex-start;
-        flex-direction: column;
+      .resume-topbar {
+        margin-bottom: 44px;
       }
 
-      .resume-actions {
-        width: 100%;
+      .resume-pdf {
+        height: 68vh;
+        min-height: 420px;
       }
 
-      .resume-actions .btn {
-        flex: 1;
+      .resume-action {
+        flex: 1 1 auto;
       }
+    }
 
-      .resume-frame iframe {
-        height: 75vh;
-        min-height: 500px;
+    @media (prefers-reduced-motion: reduce) {
+      .resume-action {
+        transition: none;
       }
     }
 
     @media print {
-      .navbar,
-      .resume-header,
-      .resume-note,
-      .footer {
+      .resume-page {
+        padding: 0;
+        background: #ffffff;
+      }
+
+      .resume-topbar,
+      .resume-intro,
+      .resume-actions,
+      .resume-preview-heading,
+      .resume-footer {
         display: none !important;
       }
 
-      .resume-page {
-        padding: 0;
-      }
-
-      .resume-frame {
-        border: 0;
-        box-shadow: none;
-      }
-
-      .resume-frame iframe {
+      .resume-pdf {
         height: 100vh;
+        min-height: 0;
       }
     }
   </style>
 </head>
 
 <body>
-  <header class="navbar">
-    <div class="nav-container">
-      <a class="logo" href="index.html" aria-label="Sneha Singh — Home">
-        <span class="logo-mark">S.</span>
-        <span>Sneha Singh</span>
-      </a>
-
-      <nav id="mainNav" class="nav-links" aria-label="Main navigation">
-        <a href="index.html">Home</a>
-        <a href="index.html#about">About</a>
-        <a href="index.html#projects">Projects</a>
-        <a href="index.html#contact">Contact</a>
-      </nav>
-
-      <div class="nav-actions">
-        <button
-          class="theme-toggle"
-          id="themeToggle"
-          type="button"
-          aria-label="Switch theme"
-          aria-pressed="false"
-        >☾</button>
-
-        <button
-          class="menu-toggle"
-          id="menuToggle"
-          type="button"
-          aria-label="Toggle navigation"
-          aria-controls="mainNav"
-          aria-expanded="false"
-        >☰</button>
-      </div>
-    </div>
-  </header>
-
   <main class="resume-page">
-    <div class="container">
-      <div class="resume-header">
-        <div>
-          <p class="section-eyebrow">A little about my journey</p>
-          <h1>My <span class="italic-text accent-text">resume.</span></h1>
-          <p>
-            My education, technical skills, projects, and experience —
-            all in one place.
-          </p>
-        </div>
+    <div class="resume-shell">
+
+      <header class="resume-topbar">
+        <a class="resume-back" href="index.html">
+          ← Back to portfolio
+        </a>
+
+        <a
+          class="resume-action"
+          href="SnehaSinghCV.pdf"
+          download="SnehaSinghCV.pdf"
+        >
+          ↓ Download PDF
+        </a>
+      </header>
+
+      <section class="resume-intro">
+        <span class="resume-eyebrow">The professional side of me</span>
+
+        <h1>My resume<span aria-hidden="true">.</span></h1>
+
+        <p>
+          A closer look at my education, technical skills, projects,
+          and professional journey — all in one place.
+        </p>
 
         <div class="resume-actions">
-          <a class="btn btn-secondary" href="index.html">
-            ← Back to portfolio
+          <a
+            class="resume-action resume-action-primary"
+            href="SnehaSinghCV.pdf"
+            download="SnehaSinghCV.pdf"
+          >
+            Download my resume ↓
           </a>
 
           <a
-            class="btn btn-primary"
-            href="SnehaSinghCV.pdf"
-            download
+            class="resume-action"
+            href="index.html#contact"
           >
-            Download CV ↗
+            Let's connect ↗
           </a>
-        </div>
-      </div>
-
-      <section
-        class="resume-frame"
-        aria-label="Resume PDF preview"
-        style="padding: 0;"
-      >
-        <iframe
-          src="SnehaSinghCV.pdf"
-          title="Sneha Singh resume PDF"
-          loading="lazy"
-        ></iframe>
-
-        <div class="resume-fallback">
-          Having trouble viewing the document?
-          <a href="SnehaSinghCV.pdf" target="_blank" rel="noopener noreferrer">
-            Open the resume PDF in a new tab
-          </a>.
         </div>
       </section>
 
-      <p class="resume-note">
-        Prefer a copy? Use the download button above to save the PDF.
-      </p>
+      <section
+        class="resume-preview"
+        aria-label="Resume PDF preview"
+      >
+        <div class="resume-preview-heading">
+          <p><strong>SnehaSinghCV.pdf</strong></p>
+          <p>PDF preview</p>
+        </div>
+
+        <object
+          class="resume-pdf"
+          data="SnehaSinghCV.pdf#view=FitH"
+          type="application/pdf"
+          aria-label="Sneha Singh's resume"
+        >
+          <div class="resume-fallback">
+            <p>
+              Your browser can't display the PDF preview here.
+            </p>
+
+            <p>
+              <a href="SnehaSinghCV.pdf" download>
+                Download the resume instead
+              </a>
+            </p>
+          </div>
+        </object>
+      </section>
+
+      <footer class="resume-footer">
+        <span>Made with care by Sneha Singh 🌻</span>
+        <a href="index.html">Back to the little corner of the internet ↗</a>
+      </footer>
+
     </div>
   </main>
-
-  <footer class="footer">
-    <div class="container footer-inner">
-      <p>
-        © <span id="currentYear"></span> Sneha Singh. Built with curiosity
-        and a little bit of chaos.
-      </p>
-
-      <div class="footer-links">
-        <a
-          href="https://github.com/myselfsneha"
-          target="_blank"
-          rel="noopener noreferrer"
-        >GitHub ↗</a>
-
-        <a
-          href="https://www.linkedin.com/in/singh--sneha/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >LinkedIn ↗</a>
-
-        <a href="index.html">Portfolio</a>
-      </div>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>
